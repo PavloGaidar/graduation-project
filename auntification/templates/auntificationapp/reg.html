@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{%block name%}
+registration
+{%endblock%}
+{%block content%}
+<div>
+    <h1>registration</h1>
+    <form  method="post">
+        {% csrf_token %}
+        <input type="image" name="image" placeholder="select your profile picture">
+        <input type="text" name="name" placeholder="input your nickname">
+        <input type="email" name="email" placeholder="input your email">
+        <input type="password" name="password" placeholder="input your password">
+        <button>Submit</button>
+    </form>
+</div>
+{%endblock%}

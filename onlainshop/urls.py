@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .settings import DEBUG, MEDIA_ROOT , MEDIA_URL
 from mainpage.views import show_mainpage
+from django.conf.urls.static import static
 from feedback.views import show_feedback
 from cart.views import show_cart
 from catalog.views import show_catalog
+from auntification.views import show_registration
 
 
 urlpatterns = [
@@ -27,4 +30,8 @@ urlpatterns = [
     path('catalogue/', show_catalog),
     path('feedback/', show_feedback),
     path('cart/', show_cart),
+    path('registration/', show_registration)
 ]
+
+if DEBUG:
+    urlpatterns += static(MEDIA_URL, document_root = MEDIA_ROOT)
