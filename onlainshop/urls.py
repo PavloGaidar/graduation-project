@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from feedback.views import show_feedback
 from cart.views import show_cart
 from catalog.views import show_catalog
-from auntification.views import show_registration
+from auntification.views import show_registration, show_login
 
 
 urlpatterns = [
@@ -30,7 +30,8 @@ urlpatterns = [
     path('catalogue/', show_catalog),
     path('feedback/', show_feedback),
     path('cart/', show_cart),
-    path('registration/', show_registration)
+    path('registration/', show_registration),
+    path('login/', show_login)
 ]
 
 if DEBUG:

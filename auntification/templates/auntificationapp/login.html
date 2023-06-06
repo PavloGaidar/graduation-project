@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
 {%block name%}
-registration
+login
 {%endblock%}
 {%block content%}
-<div class="reg-blok">
-    <div class="reg">
-        <h1>registration</h1>
+<div class="login-blok">
+    <div class="login">
+        <h1>Login</h1>
         <form  method="post">
             {% csrf_token %}
             <input type="text" name="name" placeholder="input your nickname" required>
-            <input type="email" name="email" placeholder="input your email" required>
             <input type="password" name="password" placeholder="input your password" required>
-            <input type="text" name="phone" placeholder="input your phone number" required>
             <button>Submit</button>
         </form>
+        <span class="error_login">You entered wrong nickname or password</span>
     </div>
 </div>
 {%endblock%}
