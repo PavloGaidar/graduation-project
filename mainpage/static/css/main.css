@@ -7,6 +7,7 @@
     align-items: center;
     margin-left: 48%;
     margin-top: 10%;
+<<<<<<< HEAD
     
 }
     
@@ -78,6 +79,82 @@
         border-radius: 90px;
     }
     
+=======
+    
+    }
+    
+    .login-blok .login button{
+        box-sizing: border-box;
+    
+        /* Auto layout */
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-left: 30%;
+        width: 70px;
+        height: 30px;
+        left: 20px;
+        top: 20px;
+        
+        background: #296770;
+    
+        border: 5px solid #378A95;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 90px;
+    }
+    
+    .login-blok{
+        width: 5%;
+        height: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 48%;
+        margin-top: 10%;
+    }
+    .reg{
+    
+    
+    }
+    .reg-form{
+    
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #333;
+    }
+    .reg-blok .reg button{
+        box-sizing: border-box;
+    
+        /* Auto layout */
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        margin-left: 30%;
+        height: 30px;
+        left: 20px;
+        top: 20px;
+        
+        background: #296770;
+    
+        border: 5px solid #378A95;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 90px;
+    }
+    
+>>>>>>> origin/RubyCat1337-patch-2.0.7
 .d-flex{
     display: flex;
     flex-direction: row;

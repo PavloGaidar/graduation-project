@@ -1,7 +1,22 @@
 {% extends 'base.html' %}
 {%block name%}
-Catalog
+catalogg
 {%endblock%}
 {%block content%}
-<h1>Catalog</h1>
+<h1>catalog</h1>
+{% for product in list_products %}
+<div class="catalogg">
+    <h2>{{product.name}}</h2>
+    <img src="{{product.image.url}}" alt="" style="max-width: 300px;" >
+    <p>{{product.description}}</p>
+    <p>{{product.price}}$</p>
+</div>
+    
+{%endfor%}
+{% for category in additional_category %}
+    <div>
+        <input type="checkbox" class = "check" value="{{ category.name }}" checked>
+        {{ category.name }}
+    </div>
+{% endfor %}
 {%endblock%}
