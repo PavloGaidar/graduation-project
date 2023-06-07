@@ -4,7 +4,7 @@ login
 {%endblock%}
 {%block content%}
 <div class="login-blok">
-    <div class="login">
+    <div class="login" style="border: 1px;">
         <h1>Login</h1>
         <form  method="post">
             {% csrf_token %}
@@ -12,7 +12,9 @@ login
             <input type="password" name="password" placeholder="input your password" required>
             <button>Submit</button>
         </form>
-        <span class="error_login">You entered wrong nickname or password</span>
+        {% if error == 'true' %}
+            <span class="error_login" hidden>You entered wrong nickname or password</span>
+        {% endif %}
     </div>
 </div>
 {%endblock%}
