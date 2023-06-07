@@ -11,9 +11,11 @@ registration
             <input type="text" name="name" placeholder="input your nickname" required>
             <input type="email" name="email" placeholder="input your email" required>
             <input type="password" name="password" placeholder="input your password" required>
+            <input type="password" name="password_confirm" placeholder="repeat your password" required>
             <input type="text" name="phone" placeholder="input your phone number" required>
             <button>Submit</button>
         </form>
+        <span>{{ error_text }}</span>
     </div>
 </div>
 {%endblock%}
