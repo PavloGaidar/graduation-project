@@ -57,20 +57,21 @@ def show_login(request):
         name = request.POST.get("name")
         password = request.POST.get("password")
         users = User.objects.all()
-
-        user = User.objects.filter(name=name, password=password)
-        print(user)
-        if user != None:
-            print('пройшло')
-            response.set_cookie('LogIn', True)
-            return response
-        else:
-            print('не пройшло')
-            response = render(request, "auntificationapp/login.html", context={'error' : 'true'})
         for user in users:
-            return response
+            if password == user.password and name == user.name:
+                print('пройшло')
+                response.set_cookie('LogIn', True)
+                return response
         else:
-            context['error_text']= 'Паролі не співпадають!'
-            response  = render(request, "auntificationapp/login.html", context)
-            return response
+            for user in users:
+                if name != user.name:
+                    print('password')
+                    response = render(request, "auntificationapp/login.html", context={'error_text' : 'You enter wrong nickname'})
+                    return response
+                else:
+                    if name == user.name and password != user.password:
+                        print('name')
+                        context['error_text']= 'You entered wrong password'
+                        response  = render(request, "auntificationapp/login.html", context)
+                        return response
     return response

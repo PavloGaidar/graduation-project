@@ -12,9 +12,8 @@ login
             <input type="password" name="password" placeholder="input your password" required>
             <button>Submit</button>
         </form>
-        {% if error == 'true' %}
-            <span class="error_login" hidden>You entered wrong nickname or password</span>
-        {% endif %}
+        <span class="error_login">{{error_text}}</span> 
+        
     </div>
 </div>
 {%endblock%}

@@ -3,20 +3,38 @@
 catalogg
 {%endblock%}
 {%block content%}
-<h1>catalog</h1>
-{% for product in list_products %}
-<div class="catalogg">
-    <h2>{{product.name}}</h2>
-    <img src="{{product.image.url}}" alt="" style="max-width: 300px;" >
-    <p>{{product.description}}</p>
-    <p>{{product.price}}$</p>
-</div>
-    
-{%endfor%}
-{% for category in additional_category %}
-    <div>
-        <input type="checkbox" class = "check" value="{{ category.name }}" checked>
-        {{ category.name }}
+
+<div class="catalog-blok">
+    <div class="category">
+        <div class="collapse" id="navbarToggleExternalContent2" data-bs-theme="dark">
+            <div class="bg-dark p-4">
+                {% for category in additional_category %}
+                    <div>
+                        <input type="checkbox" class = "check" value="{{ category.name }}" checked>
+                    </div>
+                {% endfor %}
+            </div>
+          </div>
+          <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </div>
+          </nav>
     </div>
-{% endfor %}
+    {% for product in list_products %}
+    <div class="product">
+        <div class="catalogg">
+            
+            <img src="{{product.image.url}}" alt="" style="max-width: 300px;" >
+            <h2>{{product.name}}</h2>
+            <span>{{product.price}}$</span>
+            <button>Detailed description</button>
+
+        </div>
+    </div>   
+    {%endfor%}
+    
+</div>
 {%endblock%}
