@@ -68,13 +68,7 @@ def show_login(request):
             print('не пройшло')
             response = render(request, "auntificationapp/login.html", context={'error' : 'true'})
         for user in users:
-            if name != user.name:
-                return response
-            else:
-                context['error_text']= 'Nickname is already taken'
-                print("name")
-                response  = render(request, "auntificationapp/login.html", context)
-                return response
+            return response
         else:
             context['error_text']= 'Паролі не співпадають!'
             response  = render(request, "auntificationapp/login.html", context)
