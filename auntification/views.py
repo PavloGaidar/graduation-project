@@ -49,12 +49,14 @@ def show_registration(request):
     return response 
 
 def show_login(request):
+    context={}
     response = render(request, "auntificationapp/login.html")
     if request.method == "GET" and request.COOKIES.get('LogIn') is not None:
         return redirect('../')
     if request.method == "POST":
         name = request.POST.get("name")
         password = request.POST.get("password")
+        users = User.objects.all()
 
         user = User.objects.filter(name=name, password=password)
         print(user)
@@ -65,4 +67,16 @@ def show_login(request):
         else:
             print('не пройшло')
             response = render(request, "auntificationapp/login.html", context={'error' : 'true'})
+        for user in users:
+            if name != user.name:
+                return response
+            else:
+                context['error_text']= 'Nickname is already taken'
+                print("name")
+                response  = render(request, "auntificationapp/login.html", context)
+                return response
+        else:
+            context['error_text']= 'Паролі не співпадають!'
+            response  = render(request, "auntificationapp/login.html", context)
+            return response
     return response
