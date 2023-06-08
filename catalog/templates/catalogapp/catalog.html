@@ -3,38 +3,61 @@
 catalogg
 {%endblock%}
 {%block content%}
-
 <div class="catalog-blok">
-    <div class="category">
-        <div class="collapse" id="navbarToggleExternalContent2" data-bs-theme="dark">
-            <div class="bg-dark p-4">
-                {% for category in additional_category %}
-                    <div>
-                        <input type="checkbox" class = "check" value="{{ category.name }}" checked>
-                    </div>
-                {% endfor %}
+  <div class="category-blok">
+    <button class="btn btn-primary" style="background-color: #ffffff; border: #ffffff solid; color: black;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Filter</button>
+
+    <div class="offcanvas offcanvas-top category" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+      <div class="category-blok">
+          <div class="offcanvas-header" >
+              <h5 class="offcanvas-title" id="offcanvasTopLabel">Filter</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+            <div class="offcanvas-body checkbox">
+              {% for category in additional_category %}
+              <div class="manufacturers">
+                <h2>Manufacturers:</h2>
+                <input type="checkbox" class = "check" value="{{ option.price }}" checked>
+
+                <p>{{category.name}}</p>
+              </div>
+              {% endfor %}
           </div>
-          <nav class="navbar navbar-dark bg-dark">
-            <div class="container-fluid">
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            </div>
-          </nav>
+      </div>
     </div>
     {% for product in list_products %}
-    <div class="product">
-        <div class="catalogg">
-            
-            <img src="{{product.image.url}}" alt="" style="max-width: 300px;" >
-            <h2>{{product.name}}</h2>
-            <span>{{product.price}}$</span>
-            <button>Detailed description</button>
-
+    <div class="product" style="width: 18rem;">
+      <div class="catalogg">
+        <img src="{{product.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h2>{{product.name}}</h2>
+          <span>{{product.price}}$</span>
+          <a href="#" class="btn btn-primary">Detailed description</a>
         </div>
-    </div>   
+      </div>
+    </div>
     {%endfor%}
-    
+
 </div>
+<script>
+  // Get all the checkboxes
+  const checkboxes = document.querySelectorAll('.check');
+
+  // Add event listener for checkbox change
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      const category = this.dataset.category;
+
+      // Show/hide products based on checkbox state and category
+      const products = document.querySelectorAll('.catalogg');
+      products.forEach(product => {
+        if (category === '{{category.name}}') {
+          product.style.display = this.checked ? 'block' : 'none';
+        } else {
+          product.style.display = 'block';
+        }
+      });
+    });
+  });
+</script>
 {%endblock%}

@@ -20,7 +20,7 @@ from mainpage.views import show_mainpage
 from django.conf.urls.static import static
 from feedback.views import show_feedback
 from cart.views import show_cart
-from catalog.views import show_catalog
+from catalog.views import show_catalog, show_product
 from auntification.views import show_registration, show_login
 
 
@@ -31,7 +31,8 @@ urlpatterns = [
     path('feedback/', show_feedback),
     path('cart/', show_cart),
     path('registration/', show_registration),
-    path('login/', show_login)
+    path('login/', show_login),
+    path('product/<product_pk>', show_product, name='product_page')
 ]
 
 if DEBUG:
