@@ -51,7 +51,7 @@ def show_registration(request):
 def show_login(request):
     context={}
     response = render(request, "auntificationapp/login.html")
-    if request.method == "GET" and request.COOKIES.get('LogIn') is not None:
+    if request.method == 'GET' or request.COOKIES.get('LogIn') is not None:
         return redirect('../')
     if request.method == "POST":
         name = request.POST.get("name")
@@ -59,7 +59,6 @@ def show_login(request):
         users = User.objects.all()
         for user in users:
             if password == user.password and name == user.name:
-                print('пройшло')
                 response.set_cookie('LogIn', True)
                 return response
         else:

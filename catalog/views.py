@@ -8,7 +8,15 @@ def show_catalog(request):
     respose = render(request, "catalogapp/catalog.html",  context)
     return respose
 def show_product(request, product_pk):
-    
-    context = {"list_products": Product.objects.all()}
-    response = render(request, 'catalogapp/product.html', context)
+    product = Product.objects.get(pk=product_pk)
+    response = render(request, 'catalogapp/product.html',context={'product':product})
+    if request.method == 'POST':
+        if request.COOKIES.get('product') == None:
+            product = product_pk
+            response.set_cookie('product', product)
+            return response
+        else:
+            product = request.COOKIES['product'] + ' ' + str(product_pk)
+            response.set_cookie('product', product)
+            return response
     return response
