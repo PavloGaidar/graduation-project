@@ -1,4 +1,3 @@
-"""onlainshop URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -32,8 +31,9 @@ urlpatterns = [
     path('cart/', show_cart),
     path('registration/', show_registration),
     path('login/', show_login),
-    path('product/<product_pk>', show_product, name='product_page')
+    path('product/<product_pk>', show_product, name='product')
 ]
+
 
 if DEBUG:
     urlpatterns += static(MEDIA_URL, document_root = MEDIA_ROOT)
