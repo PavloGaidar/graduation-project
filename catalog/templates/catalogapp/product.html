@@ -5,3 +5,21 @@ product
 {%block content%}
 <h1>product {{product.name}}</h1>
 {%endblock%}
+<div class="product-block">
+    {% for product in list_products %}
+    <div class="product">
+        <h1>Перегляд продукту</h1>
+        <h2>{{product.name}}</h2>
+        <img src="{{product.image.url}}" alt=".." style="max-width: 300px;">
+        <p>{{product.description}}</p>
+        <p>{{product.price}}</p>
+    </div>
+    {%endfor%}
+    <div class="cart">
+    <form method = "POST" class = "addToCart" action = "{{ product.get_absolute_url }}">
+        {% csrf_token %}
+        <input type="text" hidden value="{{product.pk}}" name="product_pk">
+        <button class="button-add-to-cart">Додати до кошику</button>
+    </form>
+    </div>
+</div>
