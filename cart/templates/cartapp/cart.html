@@ -7,8 +7,9 @@ cart
 <div class="products-idi-b-bulky">
     {% for product in products %}
         <div class="products-1337zxc">
-            <hr>
+            
             <p> {{ product.name }}</p>
+            <p>{{ product.price }} $</p>
             <p> {{ product.cost }}</p>
             <form method="POST" class="delet_from_cart">
                 {% csrf_token %}
