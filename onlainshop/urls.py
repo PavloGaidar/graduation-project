@@ -23,6 +23,7 @@ from catalog.views import show_catalog, show_product
 from auntification.views import show_registration, show_login
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', show_mainpage),

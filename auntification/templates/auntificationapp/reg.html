@@ -3,19 +3,95 @@
 registration
 {%endblock%}
 {%block content%}
-<div class="reg-blok">
-    <div class="reg">
-        <h1>registration</h1>
-        <form  method="post">
-            {% csrf_token %}
-            <input type="text" name="name" placeholder="input your nickname" required>
-            <input type="email" name="email" placeholder="input your email" required>
-            <input type="password" name="password" placeholder="input your password" required>
-            <input type="password" name="password_confirm" placeholder="repeat your password" required>
-            <input type="text" name="phone" placeholder="input your phone number" required>
-            <button>Submit</button>
-        </form>
-        <span class="error_reg">{{ error_text }}</span>
+
+<div class="reg-blok2">
+    <div class="reg-blok">
+        <div class="reg">
+            <h1>registration</h1>
+            <form  method="post">
+              <form action="" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="input your nickname" required>
+                <input type="email" name="email" placeholder="input your email" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div class="invalid-feedback">
+                    Адрес електронной почты должен быть по шаблону <strong>example@example.com</strong> 
+                  </div>
+                <input type="password" name="password" placeholder="input your password" required>
+                <input type="password" name="password_confirm" placeholder="repeat your password" required>
+                <input type="text" class="tele" data-inputmask="'mask': '+99(999)-999-9999', 'showMaskOnHover': false, 'placeholder': '*'" name="phone" required>
+                <button>Submit</button>
+              </form>
+            </form>
+            <span class="error_reg">{{ error_text }}</span>
+        </div>
     </div>
 </div>
+<script>
+    (() => {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+
+    let allIns = document.querySelectorAll(".tele");
+    Inputmask().mask(allIns);
+    [...allIns].map(el => el.setAttribute('placeholder', "+**(***)-***-****"));
+
+    $('#jqp input').inputmask("phone", {
+    placeholder: '#',
+    showMaskOnHover: false,
+    onKeyValidation: function () {
+        let mt = $(this).inputmask("getmetadata");
+        $('#jqp span').text(`${mt['cd']} (${mt['cc']})`);
+        //console.log(mt);
+    }
+    });
+
+    Inputmask.extendAliases({
+    my_phone: {
+        alias: "abstractphone",
+        placeholder: '*',
+        phoneCodes: [{
+        mask: "+987-***",
+        cc: "zz",
+        cd: "zzzz",
+        desc_en: "Moon!",
+        name_ru: "яяя",
+        desc_ru: ""
+        }, {
+        mask: "+789-***",
+        cc: "yy",
+        cd: "Y-Y",
+        desc_en: "Sun!"
+        }],
+        onKeyValidation: function() {
+        let mt = $(this).inputmask("getmetadata");
+        $('#jqma span').text(mt['desc_en']).css('color',
+        `#${Math.floor(Math.random() * 0x1000000).toString(16).padStart(6, 0)}`);
+        //console.log(mt);
+        }
+    }
+    });
+    $('#jqma input').inputmask("my_phone");
+</script>
 {%endblock%}

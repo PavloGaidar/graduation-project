@@ -22,9 +22,8 @@ def show_registration(request):
                     if phone != user.phone:
                         UserNew = User(name=request.POST.get('name'),password=request.POST.get('password'),phone=request.POST.get('phone'),email=request.POST.get('email'))
                         UserNew.save()
-                        response.set_cookie('LogIn', True)
-                        print('succes')
                         response  = render(request, "auntificationapp/reg.html")
+                        response.set_cookie('LogIn', True)
                         return response
                     else:
                         context['error_text']= 'Phone number is already taken'
@@ -51,7 +50,7 @@ def show_registration(request):
 def show_login(request):
     context={}
     response = render(request, "auntificationapp/login.html")
-    if request.method == 'GET' or request.COOKIES.get('LogIn') is not None:
+    if request.method == 'GET' and request.COOKIES.get('LogIn') is not None:
         return redirect('../')
     if request.method == "POST":
         name = request.POST.get("name")

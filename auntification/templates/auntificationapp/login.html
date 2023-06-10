@@ -3,17 +3,19 @@
 login
 {%endblock%}
 {%block content%}
-<div class="login-blok">
-    <div class="login" style="border: 1px;">
-        <h1>Login</h1>
-        <form  method="post">
-            {% csrf_token %}
-            <input type="text" name="name" placeholder="input your nickname" required>
-            <input type="password" name="password" placeholder="input your password" required>
-            <button>Submit</button>
-        </form>
-        <span class="error_login">{{error_text}}</span> 
-        
+<div class="login-blok2">
+    <div class="login-blok">
+        <div class="login" style="border: 1px;">
+            <h1>Login</h1>
+            <form  method="post">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="input your nickname" required>
+                <input type="password" name="password" placeholder="input your password" required>
+                <button>Submit</button>
+            </form>
+            <span class="error_login">{{error_text}}</span> 
+            
+        </div>
     </div>
 </div>
 {%endblock%}
