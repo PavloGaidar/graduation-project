@@ -7,14 +7,15 @@ from catalog.models import Product
 
 
 def show_cart(request):
-    
-
-
-
-
-        products_pk = request.COOKIES['product'].split(' ')
-        list_products = Product.objects.filter(pk__in=products_pk)
-        response = render(request, 'cartapp/cart.html', {'products': list_products})
+        if request.COOKIES.get('product') is not None:
+            products_pk = request.COOKIES['product'].split(' ')
+            list_products = list()
+            for product in products_pk:
+                list_products.append(Product.objects.get(pk=product))
+            response = render(request, 'cartapp/cart.html', {'products': list_products})
+        else:
+            list_products = list()
+            response = render(request, 'cartapp/cart.html', {'products': list_products})
 
         if request.method == 'POST':
             pk_deleted = request.POST.get('product_pk')
@@ -25,10 +26,11 @@ def show_cart(request):
 
                 if new_product:
                     list_products = Product.objects.filter(pk__in=products_pk)
-                    response.set_cookie('product_pk', new_product)
-                    
+                    response.set_cookie('product', new_product)
+                    return response
                 else:
                     response = render(request, 'cartapp/cart.html', {'products': []})
-                    response.delete_cookie('product_pk')
+                    response.delete_cookie('product')
+                    return response
 
         return response

@@ -1,34 +1,58 @@
 {% extends 'base.html' %}
-{%block name%}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css.style.css' %}">
+{% endblock %}
+{% block name %}
 registration
-{%endblock%}
-{%block content%}
+{% endblock %}
+{% block content %}
 
 <div class="reg-blok2">
     <div class="reg-blok">
         <div class="reg">
             <h1>registration</h1>
-            <form  method="post">
-              <form action="" class="needs-validation" novalidate>
+            <form method="post" class="needs-validation" novalidate>
                 {% csrf_token %}
-                <input type="text" name="name" placeholder="input your nickname" required>
-                <input type="email" name="email" placeholder="input your email" required>
-                  <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                  <div class="invalid-feedback">
-                    Адрес електронной почты должен быть по шаблону <strong>example@example.com</strong> 
-                  </div>
-                <input type="password" name="password" placeholder="input your password" required>
-                <input type="password" name="password_confirm" placeholder="repeat your password" required>
-                <input type="text" class="tele" data-inputmask="'mask': '+99(999)-999-9999', 'showMaskOnHover': false, 'placeholder': '*'" name="phone" required>
-                <button>Submit</button>
-              </form>
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="input your nickname" required>
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback">
+                        Wrong username!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="input your email" required>
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback">
+                        The email address should follow the pattern <strong>example@example.com</strong>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="input your password" required>
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback">
+                        Your password isn't safe!
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="repeat your password" required>
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback">
+                        Confirm Password are not the same Password
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="tele" data-inputmask="'mask': '+99(999)-999-9999', 'showMaskOnHover': false, 'placeholder': '*'" name="phone" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
             <span class="error_reg">{{ error_text }}</span>
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/inputmask@5.3.0/dist/inputmask/min/inputmask.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/inputmask@5.3.0/dist/inputmask/min/jquery.inputmask.min.js"></script>
 <script>
     (() => {
         "use strict";
@@ -38,21 +62,20 @@ registration
 
         // Loop over them and prevent submission
         Array.from(forms).forEach((form) => {
-          form.addEventListener(
-            "submit",
-            (event) => {
-              if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
+            form.addEventListener(
+                "submit",
+                (event) => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
 
-              form.classList.add("was-validated");
+                    form.classList.add("was-validated");
             },
             false
           );
         });
       })();
-
     let allIns = document.querySelectorAll(".tele");
     Inputmask().mask(allIns);
     [...allIns].map(el => el.setAttribute('placeholder', "+**(***)-***-****"));
@@ -62,9 +85,9 @@ registration
     showMaskOnHover: false,
     onKeyValidation: function () {
         let mt = $(this).inputmask("getmetadata");
-        $('#jqp span').text(`${mt['cd']} (${mt['cc']})`);
+        $('#jqp span').text($(mt['cd']) ($(mt['kk'])));
         //console.log(mt);
-    }
+      }
     });
 
     Inputmask.extendAliases({
@@ -73,14 +96,14 @@ registration
         placeholder: '*',
         phoneCodes: [{
         mask: "+987-***",
-        cc: "zz",
+        kk: "zz",
         cd: "zzzz",
         desc_en: "Moon!",
         name_ru: "яяя",
         desc_ru: ""
         }, {
         mask: "+789-***",
-        cc: "yy",
+        kk: "yy",
         cd: "Y-Y",
         desc_en: "Sun!"
         }],
@@ -91,7 +114,7 @@ registration
         //console.log(mt);
         }
     }
-    });
-    $('#jqma input').inputmask("my_phone");
+  });
+  $('#jqma input').inputmask("my_phone");
 </script>
 {%endblock%}

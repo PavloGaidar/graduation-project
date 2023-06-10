@@ -3,10 +3,10 @@
 cart
 {%endblock%}
 {%block content%}
-
-<div class="products">
+<div class="product-block2">
+<div class="products-idi-b-bulky">
     {% for product in products %}
-        <div>
+        <div class="products-1337zxc">
             <hr>
             <p> {{ product.name }}</p>
             <p> {{ product.cost }}</p>
@@ -14,9 +14,10 @@ cart
                 {% csrf_token %}
                 <input type="hidden" name="product_pk" value="{{ product.pk}}">
                 <button> Видалити з кошика</button>
+
             </form>
         </div>
     {% endfor %}
 </div>
-
+</div>
 {%endblock%}
