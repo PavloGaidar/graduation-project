@@ -4,18 +4,19 @@ cart
 {%endblock%}
 {%block content%}
 
-    <h1>Cart</h1>
-    {% for key, product in products.items() %}
+<div class="products">
+    {% for product in products %}
         <div>
             <hr>
             <p> {{ product.name }}</p>
             <p> {{ product.cost }}</p>
             <form method="POST" class="delet_from_cart">
                 {% csrf_token %}
-                <input type="hidden" name="index" value="{{ index }}">
-                <button>Remove from cart</button>
+                <input type="hidden" name="product_pk" value="{{ product.pk}}">
+                <button> Видалити з кошика</button>
             </form>
         </div>
     {% endfor %}
+</div>
 
 {%endblock%}
