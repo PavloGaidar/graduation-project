@@ -4,19 +4,20 @@ catalogg
 {%endblock%}
 {%block content%}
 <div class="catalog-blok">
-  <div class="category-blok">
+  <div class="category-blok2">
     <button class="btn btn-primary" style="background-color: #ffffff; border: #ffffff solid; color: black;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Filter</button>
 
-    <div class="offcanvas offcanvas-top category" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+    <div class="offcanvas offcanvas-top  height: 40%; category" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
       <div class="category-blok">
-          <div class="offcanvas-header" >
+          <div class="offcanvas-header" style="height: 40%;" >
               <h5 class="offcanvas-title" id="offcanvasTopLabel">Filter</h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body checkbox">
+              <h2>Manufacturers:</h2>
               {% for category in additional_category %}
               <div class="manufacturers">
-                <h2>Manufacturers:</h2>
+                
                 <input type="checkbox" class = "check" value="{{ option.price }}" checked>
 
                 <p>{{category.name}}</p>
@@ -24,8 +25,10 @@ catalogg
               {% endfor %}
           </div>
       </div>
-    </div>
+    </div >
+    <div class="cataloggg">
     {% for product in list_products %}
+
     <div class="product" style="width: 18rem;">
       <div class="catalogg">
         <img src="{{product.image.url}}" class="card-img-top" alt=".s..">
@@ -37,7 +40,9 @@ catalogg
       </div>
     </div>
 
+
     {%endfor%}
+  </div>
   </div>
 </div>
 
