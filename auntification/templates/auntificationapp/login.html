@@ -5,23 +5,23 @@ login
 {% block content %}
 <div class="login-blok2">
     <div class="login-blok">
+        <h1>Login</h1>
         <div class="login" style="border: 1px;">
-            <h1>Login</h1>
+            
             <form method="post" class="needs-validation" novalidate>
                 {% csrf_token %}
                 <input type="text" name="name" placeholder="input your nickname" class="form-control" required>
-                <div class="valid-feedback"></div>
-                <div class="invalid-feedback" style="">
+                <div class="invalid-feedback">
                     Please enter your nickname.
                 </div>
                 <input type="password" name="password" placeholder="input your password" class="form-control" required>
-                <div class="valid-feedback"></div>
                 <div class="invalid-feedback">
                     Please enter your password.
                 </div>
-                <button class="btn btn-outline-success">Submit</button>
+                
             </form>
             <span class="error_login">{{ error_text }}</span>
+            <button class="btn btn-outline-success">Submit</button>
         </div>
     </div>
 </div>

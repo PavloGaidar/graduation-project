@@ -25,7 +25,10 @@ def show_cart(request):
                 new_product = ' '.join(products_pk)
 
                 if new_product:
-                    list_products = Product.objects.filter(pk__in=products_pk)
+                    list_products = list()
+                    for product in new_product.split(" "):
+                        list_products.append(Product.objects.get(pk=product))
+                    response = render(request, 'cartapp/cart.html', {'products': list_products})
                     response.set_cookie('product', new_product)
                     return response
                 else:
