@@ -10,31 +10,31 @@ registration
 
 <div class="reg-blok2">
     <div class="reg-blok">
-        <div class="reg">
+        <div class="reg" style="margin-left: 1350px; margin-top:280px;">
             <h1>registration</h1>
             <form method="post" class="needs-validation" novalidate>
                 {% csrf_token %}
                 <div class="mb-3">
                     <input type="text" class="form-control" id="name" name="name" placeholder="input your nickname" required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback" style="margin-left: -120px;margin-top:-27px">
                         Wrong username!
                     </div>
                 </div>
                 <div class="mb-3">
                     <input type="email" class="form-control" id="email" name="email" placeholder="input your email" required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback" style="margin-left: -455px;margin-top:-31px;width:auto">
                         The email address should follow the pattern <strong>example@example.com</strong>
                     </div>
                 </div>
                 <div class="mb-3">
                     <input type="password" class="form-control" id="password" name="password" placeholder="input your password" required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback" style="margin-left: -167px;margin-top:-27px">
                         Your password isn't safe!
                     </div>
                 </div>
                 <div class="mb-3">
                     <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="repeat your password" required>
-                    <div class="invalid-feedback">
+                    <div class="invalid-feedback" style="margin-left: -301px;margin-top:-30px;width:auto;">
                         Confirm Password are not the same Password
                     </div>
                 </div>
@@ -113,4 +113,4 @@ registration
   });
   $('#jqma input').inputmask("my_phone");
 </script>
-{%endblock%}
+{% endblock %}

@@ -351,9 +351,8 @@ input[type="checkbox"]{
     
 .reg{
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
 }
     .login-blok .login button{
         box-sizing: border-box;
@@ -418,7 +417,7 @@ input[type="checkbox"]{
     .needs-validation{
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 5px;
         align-items: center;
 
     }
@@ -533,3 +532,12 @@ input[type="checkbox"]{
     height:50px ;
     
 }
+.invalid-feedback {
+    margin-left: auto;
+}
+@media (max-width: 576px) {
+    .invalid-feedback {
+      margin-left: 0;
+      text-align: right;
+    }
+  }
