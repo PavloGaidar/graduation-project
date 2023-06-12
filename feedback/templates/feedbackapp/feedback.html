@@ -7,14 +7,69 @@ feedback
        <div class="feedback-block">
                         <div class="feedbackk">
                             <h1>feedback</h1>
-            <form action="POST" class="feedback-form">
-                        <input type="text" name="name" placeholder="input your nickname" class="form-control" required>
-                <input type="email" class="form-control" id="email" name="email" placeholder="input your email" required>
-<input type="text" name="name" placeholder="input your nickname" class="form-control" required>
-            
-                        <button class="button-add-to-cart">Send</button>
+            <form action="post" class="feedback-form needs-validation">
+                
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="input your nickname" required>
+                        <div class="invalid-feedback" style="margin-left: -120px;margin-top:-27px">
+                            Wrong username!
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="input your email" required>
+                        <div class="invalid-feedback" style="margin-left: -455px;margin-top:-31px;width:auto">
+                            The email address should follow the pattern <strong>example@example.com</strong>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" class="form-control" id="feedback" name="feedback" placeholder="input your feedback" required>
+                        <div class="invalid-feedback" style="margin-left: -167px;margin-top:-27px">
+                            Your feedback isn't safe!
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary ">Send</button>
+               
         </form>
         
     </div>
                     </div>
+                    <script>
+                        (() => {
+                            "use strict";
+                    
+                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                            const forms = document.querySelectorAll(".needs-validation");
+                    
+                            // Loop over them and prevent submission
+                            Array.from(forms).forEach((form) => {
+                                form.addEventListener(
+                                    "submit",
+                                    (event) => {
+                                        if (!form.checkValidity()) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                        }
+                    
+                                        form.classList.add("was-validated");
+                                },
+                                false
+                              );
+                            });
+                          })();
+                        let allIns = document.querySelectorAll(".tele");
+                        Inputmask().mask(allIns);
+                        [...allIns].map(el => el.setAttribute('placeholder', "+**(***)-***-****"));
+                    
+                        $('#jqp input').inputmask("phone", {
+                        placeholder: '#',
+                        showMaskOnHover: false,
+                        onKeyValidation: function () {
+                            let mt = $(this).inputmask("getmetadata");
+                            $('#jqp span').text($(mt['cd']) ($(mt['kk'])));
+                            //console.log(mt);
+                          }
+                        });
+                        </script>
 {%endblock%}
