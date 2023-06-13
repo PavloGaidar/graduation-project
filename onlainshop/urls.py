@@ -17,7 +17,7 @@ from django.urls import path
 from .settings import DEBUG, MEDIA_ROOT , MEDIA_URL
 from mainpage.views import show_mainpage
 from django.conf.urls.static import static
-from feedback.views import show_feedback
+from feedback.views import show_feedback , show_confirmed
 from cart.views import show_cart
 from catalog.views import show_catalog, show_product
 from auntification.views import show_registration, show_login
@@ -29,6 +29,7 @@ urlpatterns = [
     path('', show_mainpage),
     path('catalogue/', show_catalog),
     path('feedback/', show_feedback, name='feedback_view'),
+    path('confirmed/', show_confirmed),
     path('cart/', show_cart),
     path('registration/', show_registration),
     path('login/', show_login),

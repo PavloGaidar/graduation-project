@@ -33,6 +33,11 @@ def show_feedback(request):
         )
 
         if check_email_admin and check_email_user:  
-            SendMail.objects.create(name = name,mail=email,order=order)
-            return redirect('feedbackapp/feedback.html')
+            SendMail.objects.create(name = name,email=email,order=order)
+            return redirect('../confirmed/')
     return render(request, 'feedbackapp/feedback.html')
+
+def show_confirmed(request):
+    respose = render(request, "feedbackapp/confirmed.html")
+    return respose
+    

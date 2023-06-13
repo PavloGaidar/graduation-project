@@ -22,13 +22,30 @@
                       <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">features</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">comments</button>
+                      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">create comments</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="contact-tab-1" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1" type="button" role="tab" aria-controls="contact-tab-pane-1" aria-selected="false">comments</button>
                     </li>
                   </ul>
                   <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" style="height: 60%;" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">{{product.description}}</div>
                     <div class="tab-pane fade" style="height: 60%;" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">{{product.features}}</div>
-                    <div class="tab-pane fade" style="height: 60%;" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
+                    <div class="tab-pane fade" style="height: 60%;" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+                      <form action="" method="post">
+                        {% csrf_token %}
+                        <p><input type="text" name="name-massages" required placeholder="Ваше ім'я"></p>
+                        <p><input type="text" name="messages" required placeholder="your message"></p>
+                        
+                        <button>Створити</button>
+                      </form>
+                    </div>
+                    <div class="tab-pane fade" style="height: 60%;" id="contact-tab-pane-1" role="tabpanel" aria-labelledby="contact-tab-1" tabindex="0">
+                        <h2>Автор:{{ comment.name }}</h2>
+                        <p>{{ comment.messages }}</p>
+                        
+                        
+                    </div>
                   </div>
                 </div>
         

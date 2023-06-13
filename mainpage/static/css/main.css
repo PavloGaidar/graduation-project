@@ -11,6 +11,19 @@ main{
 
 }
 
+.confirmed-blok{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.confirmed{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFFFFF;
+}
+
 
 .products-1337zxc p{
 
@@ -229,6 +242,9 @@ footer{
 
 }
 
+.canvas{
+    width: 100%;
+}
 
 .catalog-blok .catalogg h2{
     text-align: center;

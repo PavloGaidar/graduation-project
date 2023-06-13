@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {%block name%}
 catalogg
 {%endblock%}
@@ -72,18 +73,22 @@ catalogg
   </div>
 </div>
 </div>
-<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel" style="background-color: white;">
+<div class="offcanvas offcanvas-top canvas" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel" style="background-color: white;">
   <div class="offcanvas-header" style="background-color: white;">
     <h5 class="offcanvas-title" id="offcanvasTopLabel">Filters</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div class="offcanvas-body filters">
-      {% for category in additional_category %}
-        <div class="manufacturers">
-          <input type="checkbox" class = "check" value="{{ option.price }}" checked>
-          <p>{{category.name}}</p>
-        </div>
-      {% endfor %}
+    {% for category in additional_category %}
+      <div class="manufacturers">
+        <input type="checkbox" class="check" value="{{ category.name }}" checked>
+        <p>{{category.name}}</p>
+      </div>
+    {% endfor %}
   </div>
+</div>
+
+<script src="{% static 'script.js' %}"></script>
+
 </div>
 {%endblock%}

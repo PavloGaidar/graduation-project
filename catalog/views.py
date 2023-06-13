@@ -11,6 +11,15 @@ def show_product(request, product_pk):
     product = Product.objects.get(pk=product_pk)
     response = render(request, 'catalogapp/product.html',context={'product':product})
     if request.method == 'POST':
+        name = request.POST.get('name-massages')
+        massages = request.POST.get('messages')
+        Comment.objects.create(name = name, messages = massages,product=product_pk)
+       
+
+
+
+
+
         if request.COOKIES.get('product') == None:
             product = product_pk
             response.set_cookie('product', product)
