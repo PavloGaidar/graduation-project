@@ -5,30 +5,58 @@ catalogg
 {%block content%}
 <div class="catalog-blok">
   <div class="category-blok2">
-    <button class="btn btn-primary" style="background-color: #ffffff; border: #ffffff solid; color: black;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">Filter</button>
-
-    <div class="offcanvas offcanvas-top  height: 40%; category" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-      <div class="category-blok">
-          <div class="offcanvas-header" style="height: 40%;" >
-              <h5 class="offcanvas-title" id="offcanvasTopLabel">Filter</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop" style="background-color: white;color: black;">Filter</button>
+    <div class="sales-hits-line" style="background-color: D2F018;height: 40px;display: flex;justify-content: center;">
+      <h2 style="position: relative;background-color: #D2F018;">Sales Hits</h2>
+    </div>
+    <div class="cataloggg">
+      <div class="sales-hits-product" style="display: flex;width: 100%;background: #3D7F88;"> 
+        <div class="sales-hits-product-body" style="display: flex;width: 100%;flex-direction: row;justify-content: center;flex-wrap: wrap;">
+            <div class="sales-hits-product-body-card" style="display: flex;flex-direction: row;align-items: flex-start;padding: 10px 10px 10px 20px;gap: 10px;width:18rem;">
+                <div class="sales-hits-product-body-card-main" style="display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center;width: 298px;height: 350px;padding-top: 40px;padding-bottom: 5px;border-radius: 5%;background: #FFFFFF;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                    <img src="/media/media/MSI_PCI-Ex_GeForce_RTX_3050_Ventus_2X_8G_OC_8GB_GDDR6_n2wtbov.jpg" class="card-img-top" alt=".s.." style="width: 80%;height: 40%;">
+                    <div class="product-body">
+                        <h2 style="text-align: center;font-size: 15px;line-height: 18px;">MSI PCI-Ex GeForce RTX 3050 Ventus 2X 8G OC 8GB GDDR6</h2>
+                        <span>10000$</span>
+                        <a href="/product/1" class="btn btn-primary" style="box-sizing: border-box;display: flex;flex-direction: row;justify-content: center;align-items: center;left: 20px;top: 20px;color: #fff;background: #296770;border-radius: 50px;border: 5px solid #378A95;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Detailed description</a>
+                    </div>
+                </div>
             </div>
-            <div class="offcanvas-body checkbox">
-              <h2>Manufacturers:</h2>
-              {% for category in additional_category %}
-              <div class="manufacturers">
-                
-                <input type="checkbox" class = "check" value="{{ option.price }}" checked>
+            <div class="sales-hits-product-body-card" style="display: flex;flex-direction: row;align-items: flex-start;padding: 10px 10px 10px 20px;gap: 10px;width:18rem;">
+                <div class="sales-hits-product-body-card-main" style="display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center;width: 298px;height: 350px;padding-top: 40px;padding-bottom: 5px;border-radius: 5%;background: #FFFFFF;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                    <img src="/media/media/MSI_PCI-Ex_GeForce_RTX_3050_Ventus_2X_8G_OC_8GB_GDDR6_n2wtbov.jpg" class="card-img-top" alt=".s.." style="width: 80%;height: 40%;">
+                    <div class="product-body">
+                        <h2 style="text-align: center;font-size: 15px;line-height: 18px;">MSI PCI-Ex GeForce RTX 3050 Ventus 2X 8G OC 8GB GDDR6</h2>
+                        <span>10000$</span>
+                        <a href="/product/1" class="btn btn-primary" style="box-sizing: border-box;display: flex;flex-direction: row;justify-content: center;align-items: center;left: 20px;top: 20px;color: #fff;background: #296770;border-radius: 50px;border: 5px solid #378A95;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Detailed description</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sales-hits-product-body-card" style="display: flex;flex-direction: row;align-items: flex-start;padding: 10px 10px 10px 20px;gap: 10px;width:18rem;">
+                <div class="sales-hits-product-body-card-main" style="display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center;width: 298px;height: 350px;padding-top: 40px;padding-bottom: 5px;border-radius: 5%;background: #FFFFFF;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                    <img src="/media/media/MSI_PCI-Ex_GeForce_RTX_3050_Ventus_2X_8G_OC_8GB_GDDR6_n2wtbov.jpg" class="card-img-top" alt=".s.." style="width: 80%;height: 40%;">
+                    <div class="product-body">
+                        <h2 style="text-align: center;font-size: 15px;line-height: 18px;">MSI PCI-Ex GeForce RTX 3050 Ventus 2X 8G OC 8GB GDDR6</h2>
+                        <span>10000$</span>
+                        <a href="/product/1" class="btn btn-primary" style="box-sizing: border-box;display: flex;flex-direction: row;justify-content: center;align-items: center;left: 20px;top: 20px;color: #fff;background: #296770;border-radius: 50px;border: 5px solid #378A95;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Detailed description</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sales-hits-product-body-card" style="display: flex;flex-direction: row;align-items: flex-start;padding: 10px 10px 10px 20px;gap: 10px;width:18rem;">
+                <div class="sales-hits-product-body-card-main" style="display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center;width: 298px;height: 350px;padding-top: 40px;padding-bottom: 5px;border-radius: 5%;background: #FFFFFF;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                    <img src="/media/media/MSI_PCI-Ex_GeForce_RTX_3050_Ventus_2X_8G_OC_8GB_GDDR6_n2wtbov.jpg" class="card-img-top" alt=".s.." style="width: 80%;height: 40%;">
+                    <div class="product-body">
+                        <h2 style="text-align: center;font-size: 15px;line-height: 18px;">MSI PCI-Ex GeForce RTX 3050 Ventus 2X 8G OC 8GB GDDR6</h2>
+                        <span>10000$</span>
+                        <a href="/product/1" class="btn btn-primary" style="box-sizing: border-box;display: flex;flex-direction: row;justify-content: center;align-items: center;left: 20px;top: 20px;color: #fff;background: #296770;border-radius: 50px;border: 5px solid #378A95;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Detailed description</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <p>{{category.name}}</p>
-              </div>
-              {% endfor %}
-          </div>
-      </div>
-    </div >
     <div class="cataloggg">
     {% for product in list_products %}
-
     <div class="product" style="width: 18rem;">
       <div class="catalogg">
         <img src="{{product.image.url}}" class="card-img-top" alt=".s..">
@@ -39,12 +67,23 @@ catalogg
         </div>
       </div>
     </div>
-
-
     {%endfor%}
   </div>
   </div>
 </div>
-
-
+</div>
+<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel" style="background-color: white;">
+  <div class="offcanvas-header" style="background-color: white;">
+    <h5 class="offcanvas-title" id="offcanvasTopLabel">Filters</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body filters">
+      {% for category in additional_category %}
+        <div class="manufacturers">
+          <input type="checkbox" class = "check" value="{{ option.price }}" checked>
+          <p>{{category.name}}</p>
+        </div>
+      {% endfor %}
+  </div>
+</div>
 {%endblock%}

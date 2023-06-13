@@ -7,7 +7,7 @@ feedback
        <div class="feedback-block">
                         <div class="feedbackk">
                             <h1>feedback</h1>
-            <form action="post" class="feedback-form needs-validation">
+            <form action="{% url 'feedback_view' %}"  action="post" class="feedback-form needs-validation">
                 
                     {% csrf_token %}
                     <div class="mb-3">
@@ -23,7 +23,7 @@ feedback
                         </div>
                     </div>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="feedback" name="feedback" placeholder="input your feedback" required>
+                        <textarea class="form-control" name="feedback" placeholder="input your feedback" required></textarea>
                         <div class="invalid-feedback" style="margin-left: -167px;margin-top:-27px">
                             Your feedback isn't safe!
                         </div>
@@ -31,7 +31,7 @@ feedback
                     
                     <button type="submit" class="btn btn-primary ">Send</button>
                
-        </form>
+            </form>
         
     </div>
                     </div>

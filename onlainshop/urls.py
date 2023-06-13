@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', show_mainpage),
     path('catalogue/', show_catalog),
-    path('feedback/', show_feedback),
+    path('feedback/', show_feedback, name='feedback_view'),
     path('cart/', show_cart),
     path('registration/', show_registration),
     path('login/', show_login),
