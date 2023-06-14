@@ -10,13 +10,32 @@ main{
     justify-content: center;
 
 }
+.product-4{
+    
+}
+.button-add-coment{
+    box-sizing: border-box;
+
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    width: 130px;
+    height: 30px;
+    left: 20px;
+    top: 20px;
+    color: #fff;
+    background: #296770;
+    border-radius: 50px;
+    border: 5px solid #378A95;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 .product-3 h2{
     font-size: 14px;
     line-height: 12px;
     width: 20%;
-}
-.product-4{
-    overflow: auto;
 }
 
 
