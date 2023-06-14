@@ -13,7 +13,7 @@ catalogg
     <div class="cataloggg">
       <div class="sales-hits-product" style="display: flex;width: 100%;background: #3D7F88;"> 
         {% for product in hits %}
-        <div class="product" style="width: 18rem;"></div>
+        
         <div class="catalogg ">
           <img src="{{product.image.url}}" class="card-img-top" alt=".s..">
           <div class="card-body">
@@ -29,9 +29,9 @@ catalogg
     
     <div class="cataloggg">
       {% for product in list_products %}
-      <div class="product.category">
-      <div class="product " style="width: 18rem;">
-        <div class="catalogg">
+
+      <div class="product product.category" style="width: 18rem;">
+        <div class="catalogg ">
           <img src="{{product.image.url}}" class="card-img-top" alt=".s..">
           <div class="card-body">
             <h2>{{product.name}}</h2>
@@ -39,7 +39,6 @@ catalogg
             <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Detailed description</a>
           </div>
         </div>
-      </div>
       </div>
       {%endfor%}
     </div>
