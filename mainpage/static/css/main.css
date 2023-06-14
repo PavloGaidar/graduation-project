@@ -10,6 +10,15 @@ main{
     justify-content: center;
 
 }
+.product-3 h2{
+    font-size: 14px;
+    line-height: 12px;
+    width: 20%;
+}
+.product-4{
+    overflow: auto;
+}
+
 
 .confirmed-blok{
     display: flex;

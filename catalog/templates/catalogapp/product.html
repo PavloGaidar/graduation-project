@@ -40,11 +40,15 @@
                         <button>Створити</button>
                       </form>
                     </div>
-                    <div class="tab-pane fade" style="height: 60%;" id="contact-tab-pane-1" role="tabpanel" aria-labelledby="contact-tab-1" tabindex="0">
-                        <h2>{{ comment.name }}</h2>
-                        <p>{{ comment.messages }}</p>
-                        
-                        
+                    <div class="tab-pane fade" style="height: 117px; overflow-y: scroll;" id="contact-tab-pane-1" role="tabpanel" aria-labelledby="contact-tab-1" tabindex="0">
+                      <div class="product-3">
+                        {% for comment in list_comment %}
+                        <div class="product-4">
+                          <h2>{{ comment.name }}</h2>
+                          <p>{{ comment.messages }}</p>
+                        </div>
+                        {% endfor %}
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -4,7 +4,8 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 def show_catalog(request):
-    context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all()}
+    list_hit = Product.objects.filter(hit=True)
+    context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all(), 'hits':list_hit}
     respose = render(request, "catalogapp/catalog.html",  context)
     return respose
 
@@ -12,22 +13,15 @@ def show_product(request, product_pk):
     product = get_object_or_404(Product, pk=product_pk)
     context = {
         'product': product,
+        'list_comment': Comment.objects.filter(product=product)
     }
-
     response = render(request, 'catalogapp/product.html', context)
 
     if request.method == 'POST':
         name = request.POST.get('name-massages')
         messages = request.POST.get('messages')
-        Comment.objects.create(name=name, messages=messages, product=product)
-
-        if request.COOKIES.get('product') is None:
-            product_cookie = str(product_pk)
-        else:
-            product_cookie = request.COOKIES['product'] + ' ' + str(product_pk)
-        
-        response.set_cookie('product', product_cookie)
-        
+        Comment.objects.create(name=name, messages=messages, product=product)     
+        response = render(request, 'catalogapp/product.html', context)
         return response
 
     return response
