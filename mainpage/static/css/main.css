@@ -88,12 +88,6 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-
-}
-.product-4{
-    
-}
-.button-add-coment{
     box-sizing: border-box;
 
 
@@ -230,7 +224,7 @@ footer{
     height: 179px;
 }
 .product-block{
-    width: 100%;
+    width: 105%;
     height: 80%;
     background-color:  #296770;
     flex-direction: row;

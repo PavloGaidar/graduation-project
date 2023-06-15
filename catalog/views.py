@@ -5,16 +5,35 @@ from django.shortcuts import get_object_or_404
 # Create your views here.
 def show_catalog(request):
     if request.method == 'POST':
-        search_req = request.POST.get('searched-product')
-        list_searched = Product.objects.filter(name__contains=search_req)
-        if len(list_searched) < 1:
-            nothing = f"We doesn't have product named {search_req}"
-            respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'nothing':nothing})
+        if request.POST.get('name') == 'search':
+            search_req = request.POST.get('searched-product')
+            list_searched = Product.objects.filter(name__contains=search_req)
+            if len(list_searched) < 1:
+                nothing = f"We doesn't have product named {search_req}"
+                respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'nothing':nothing})
+                return respose
+            respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched})
             return respose
-        respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched})
-        return respose
-    list_hit = Product.objects.filter(hit=True)
-    context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all(), 'hits':list_hit}
+        else:
+            checkedbox = request.POST.getlist('check')
+            print(checkedbox)
+            list_products = list()
+            if len(checkedbox) < 1: 
+                context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all()}
+                respose = render(request, "catalogapp/catalog.html",  context)
+                return respose
+            else:
+                for box in checkedbox:
+                    product = Product.objects.filter(category=box)
+                    if product in list_products:
+                        continue
+                    else:
+                        list_products.append(product)
+                context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all()}
+                respose = render(request, "catalogapp/catalog.html",  context)
+                return respose
+
+    context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all()}
     respose = render(request, "catalogapp/catalog.html",  context)
     return respose
 
@@ -54,26 +73,3 @@ def show_product(request, product_pk):
                 return response
 
     return response
-# def show_product(request, product_pk):
-#     product = Product.objects.get(pk=product_pk)
-#     context = {
-#         'product':product,
-
-#     }
-
-#     response = render(request, 'catalogapp/product.html',context)
-
-#     if request.method == 'POST':
-#         name = request.POST.get('name-massages')
-#         massages = request.POST.get('messages')
-#         Comment.objects.create(name = name, messages = massages,product=Comment.objects.filter(pk=product_pk) )
-       
-#         if request.COOKIES.get('product') == None:
-#             product = product_pk
-#             response.set_cookie('product', product)
-#             return response
-#         else:
-#             product = request.COOKIES['product'] + ' ' + str(product_pk)
-#             response.set_cookie('product', product)
-#             return response
-#     return response
