@@ -224,7 +224,7 @@ footer{
     height: 179px;
 }
 .product-block{
-    width: 105%;
+    width: 100%;
     height: 80%;
     background-color:  #296770;
     flex-direction: row;

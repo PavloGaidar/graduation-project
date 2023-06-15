@@ -1,72 +1,72 @@
 {% extends 'base.html' %}
-{%block name%}
-{{product.name}}
-{%endblock%}
-{%block content%}
 
-<div class="product-block" style="position: relative;right: 2px;">
+{% block name %}
+  {{ product.name }}
+{% endblock %}
 
-        
-        <div class="features">
-          <div class="product-2">
-            <img src="{{product.image.url}}" class="d-block w-100" alt="...">
-          </div>
-            <div class="product-description">
-                <div class="des-features">
-                <h3>{{product.name}}</h3>
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">description</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">features</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">create comments</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="contact-tab-1" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1" type="button" role="tab" aria-controls="contact-tab-pane-1" aria-selected="false">comments</button>
-                    </li>
-                  </ul>
-                  <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" style="height: 60%;" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">{{product.description}}</div>
-                    <div class="tab-pane fade" style="height: 60%;" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">{{product.features}}</div>
-                    <div class="tab-pane fade" style="height: 60%;" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-                      <form action="" method="post">
-                        {% csrf_token %}
-                        <p><input type="text" name="name-massages" required placeholder="your name"></p>
-                        <p><input type="text" name="messages" required placeholder="your message"></p>
-                        
-                        <button class="button-add-coment">Create</button>
-                      </form>
-                    </div>
-                    <div class="tab-pane fade" style="height: 195px; overflow-y: scroll;" id="contact-tab-pane-1" role="tabpanel" aria-labelledby="contact-tab-1" tabindex="0">
-                      <div class="product-3">
-                        {% for comment in list_comment %}
-                        <div class="product-4">
-                          <h2>{{ comment.name }}</h2>
-                          <p>{{ comment.messages }}</p>
-                        </div>
-                        {% endfor %}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-        
-            <div class="cart">
-                <form method = "POST" class = "addToCart" action = "{{ product.get_absolute_url }}">
-                    {% csrf_token %}
-                    <input type="text" hidden name="add-to-cart">
-                    <input type="text" hidden value="{{product.pk}}" name="product_pk">
-                    <p>{{product.price}}₴</p>
-                    <button class="button-add-to-cart">Add to cart</button>
-                </form>
+{% block content %}
+<div class="product-block">
+  <div class="features">
+    <div class="product-2">
+      <img src="{{ product.image.url }}" class="d-block w-100" alt="...">
+    </div>
+    <div class="product-description">
+      <div class="des-features">
+        <h3>{{ product.name }}</h3>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+              type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Description</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+              type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Features</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+              type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Create comments</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab-1" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1"
+              type="button" role="tab" aria-controls="contact-tab-pane-1" aria-selected="false">Comments</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" style="height: 60%;" id="home-tab-pane" role="tabpanel"
+            aria-labelledby="home-tab" tabindex="0">{{ product.description }}</div>
+          <div class="tab-pane fade" style="height: 60%;" id="profile-tab-pane" role="tabpanel"
+            aria-labelledby="profile-tab" tabindex="0">{{ product.features }}</div>
+            <div class="tab-pane fade" style="height: 60%;" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+              <form action="" method="post" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                {% csrf_token %}
+                <input type="text" name="name-massages" required placeholder="Your name" style="text-align: center; margin-top: 10px;">
+                <input type="text" name="messages" required placeholder="Your message" style="text-align: center; margin-top: 10px;">
+                <button class="button-add-coment" style="border-radius: 5px;">Create</button>
+              </form>
+            </div>
+          <div class="tab-pane fade" style="height: 195px; overflow-y: scroll;" id="contact-tab-pane-1" role="tabpanel" aria-labelledby="contact-tab-1" tabindex="0">
+            <div class="product-3" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin-top: 10px;">
+              {% for comment in list_comment %}
+              <div class="product-4">
+                <h2>{{ comment.name }}</h2>
+                <p>{{ comment.messages }}</p>
+                <p>Created at: {{ comment.timestamp|date:"F d, Y H:i" }}</p>
+              </div>
+              {% endfor %}
             </div>
           </div>
         </div>
-        
-        
+      </div>
+      <div class="cart">
+        <form method="POST" class="addToCart" action="{{ product.get_absolute_url }}">
+          {% csrf_token %}
+          <input type="text" hidden name="add-to-cart">
+          <input type="text" hidden value="{{ product.pk }}" name="product_pk">
+          <p>{{ product.price }}₴</p>
+          <button class="button-add-to-cart">Add to cart</button>
+        </form>
+      </div>
     </div>
-
+  </div>
 </div>
-{%endblock%}
+{% endblock %}
