@@ -335,6 +335,8 @@ footer{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+    
     flex-wrap: wrap;
 
 }
@@ -462,7 +464,7 @@ input[type="checkbox"]{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    justify-content: space-between;
+    align-items: center;
     /* align-content: space-between; */
     text-align: center;
     width: 298px;
@@ -474,9 +476,7 @@ input[type="checkbox"]{
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-.catalogg img{
-    display: flex;
-}
+
 .catalogg a{
     box-sizing: border-box;
 
@@ -499,8 +499,12 @@ input[type="checkbox"]{
 }
 
 .catalogg img{
-    max-width: 206px;
+    max-width: 244px;
     height: 40%;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
 }
 
 
