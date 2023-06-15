@@ -20,6 +20,10 @@ cart
         </div>
       
     {% endfor %}
+    {% if empty == 'true' %}
+    <h3>Your cart is empty</h3>
+    <a href="../catalogue">You can click here to redirect to the cart</a>
+    {% endif %}
 </div>
 </div>
 {%endblock%}

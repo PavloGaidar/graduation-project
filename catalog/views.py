@@ -27,7 +27,7 @@ def show_product(request, product_pk):
     response = render(request, 'catalogapp/product.html', context)
 
     if request.method == 'POST':
-        if request.POST.get('name') == None:
+        if request.POST.get('name') == 'search':
             search_req = request.POST.get('searched-product')
             list_searched = Product.objects.filter(name__contains=search_req)
             if len(list_searched) < 1:
@@ -37,11 +37,21 @@ def show_product(request, product_pk):
             respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched})
             return respose
         else:
-            name = request.POST.get('name-massages')
-            messages = request.POST.get('messages')
-            Comment.objects.create(name=name, messages=messages, product=product)     
-            response = render(request, 'catalogapp/product.html', context)
-            return response
+            if request.POST.get('product_pk') == product_pk:
+                if request.COOKIES.get('product') == None:
+                    product = product_pk
+                    response.set_cookie('product', product)
+                    return response
+                else:
+                    product = request.COOKIES['product'] + ' ' + str(product_pk)
+                    response.set_cookie('product', product)
+                    return response
+            else:
+                name = request.POST.get('name-massages')
+                messages = request.POST.get('messages')
+                Comment.objects.create(name=name, messages=messages, product=product)     
+                response = render(request, 'catalogapp/product.html', context)
+                return response
 
     return response
 # def show_product(request, product_pk):

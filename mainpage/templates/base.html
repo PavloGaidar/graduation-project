@@ -62,7 +62,7 @@
                     <div class="container-fluid search2">
                     <form class="d-flex" role="search" method="post">
                         {% csrf_token %}
-                        <input type="hidden" name="search">
+                        <input type="hidden" name="name" value="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched-product">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
