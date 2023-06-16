@@ -143,6 +143,10 @@ MEDIA_URL = 'media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 
+TELEGRAM_BOT_TOKEN = "AAG_R57pVKswrT6Fpm1pOZg3g_xvovRYif4"
+
+# TELEGRAM_BOT_CHAT_ID = 6120371861
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

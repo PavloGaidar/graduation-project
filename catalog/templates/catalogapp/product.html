@@ -39,9 +39,9 @@
             <div class="tab-pane fade" style="height: 60%;" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
               <form action="" method="post" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                 {% csrf_token %}
-                <input type="text" name="name-massages" required placeholder="Your name" style="text-align: center; margin-top: 10px;">
-                <input type="text" name="messages" required placeholder="Your message" style="text-align: center; margin-top: 10px;">
-                <button class="button-add-coment" style="border-radius: 5px;">Create</button>
+                <input type="text" name="name-massages" id="name-input" required placeholder="Your name" style="text-align: center; margin-top: 10px;">
+                <input type="text" name="messages" id="#message-input" required placeholder="Your message" style="text-align: center; margin-top: 10px;">
+                <button class="button-add-coment" id="create-comment-btn" style="border-radius: 5px;">Create</button>
               </form>
             </div>
           <div class="tab-pane fade" style="height: 195px; overflow-y: scroll;" id="contact-tab-pane-1" role="tabpanel" aria-labelledby="contact-tab-1" tabindex="0">
@@ -60,15 +60,42 @@
         </div>
       </div>
       <div class="cart">
-        <form method="POST" class="addToCart" action="{{ product.get_absolute_url }}">
+        <form method="POST" class="addToCart" action="product">
           {% csrf_token %}
           <input type="text" hidden name="add-to-cart">
           <input type="text" hidden value="{{ product.pk }}" name="product_pk">
           <p>{{ product.price }}₴</p>
-          <button class="button-add-to-cart">Add to cart</button>
+          <button class="button-add-to-cart" id="load-comments-btn">Add to cart</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+<script>
+  $(document).ready(function() {
+    $('#create-comment-btn').click(function(event) {
+      event.preventDefault();
+  
+      let name = $('#name-input').val();
+      let message = $('#message-input').val();
+      let productId = '{{ product.pk }}';
+  
+      $.ajax({
+        type: 'POST',
+        url: '/comment/create/',  // Replace with the correct URL endpoint for posting comments
+        data: {
+          'name': name,
+          'message': message,
+          'product_pk': productId,
+          'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+          $('#contact-tab-pane-1').html(response);
+          $('#name-input').val('');
+          $('#message-input').val('');
+        }
+      });
+    });
+  });
+  </script>
 {% endblock %}
