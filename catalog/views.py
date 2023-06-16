@@ -17,18 +17,24 @@ def show_catalog(request):
         else:
             checkedbox = request.POST.getlist('check')
             print(checkedbox)
+            print(request.POST.getlist('check'))
             list_products = list()
+            list_filter = list() 
             if len(checkedbox) < 1: 
-                context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all()}
+                context = {"list_products": None, 'additional_category': Category.objects.all()}
                 respose = render(request, "catalogapp/catalog.html",  context)
                 return respose
             else:
                 for box in checkedbox:
-                    product = Product.objects.filter(category=box)
-                    if product in list_products:
+                    list_filter.append(Category.objects.get(pk=box))
+                print(list_filter)
+                for box in list_filter:
+                    print(box)
+                    products = Product.objects.filter(category=box.pk)
+                    if products in list_products:
                         continue
                     else:
-                        list_products.append(product)
+                        list_products.append(products)
                 context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all()}
                 respose = render(request, "catalogapp/catalog.html",  context)
                 return respose

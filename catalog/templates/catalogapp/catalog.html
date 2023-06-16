@@ -34,16 +34,16 @@ catalogg
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body filters">
-      
+      <form method="post">
+        {% csrf_token %}
      
       {% for category in additional_category %}
         <div class="manufacturers">
-          <input type="checkbox" class="check" name="check" value="{{ category.name }}" checked>
+          <input type="checkbox" class="check" name="check" value="{{ category.pk }}" checked>
           <p>{{category.name}}</p>
         </div>
       {% endfor %}
-      <form method="post">
-        {% csrf_token %}
+      
         <input type="text" hidden name="name" value="filter">
         <button type="submit" class="btn btn-secondary">Submit filters</button>
       </form>

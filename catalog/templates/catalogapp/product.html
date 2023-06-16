@@ -46,12 +46,14 @@
             </div>
           <div class="tab-pane fade" style="height: 195px; overflow-y: scroll;" id="contact-tab-pane-1" role="tabpanel" aria-labelledby="contact-tab-1" tabindex="0">
             <div class="product-3" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin-top: 10px;">
-              {% for comment in list_comment %}
+              {% for comment in product.comments.all %}
               <div class="product-4">
                 <h2>{{ comment.name }}</h2>
-                <p>{{ comment.messages }}</p>
-                <p>Created at: {{ comment.timestamp|date:"F d, Y H:i" }}</p>
+                <p>{{ comment.message }}</p>
+                <p>Created at: {{ comment.created_at|date:"F d, Y H:i" }}</p>
               </div>
+              {% empty %}
+              <p>No comments available.</p>
               {% endfor %}
             </div>
           </div>
