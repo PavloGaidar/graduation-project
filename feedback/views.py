@@ -6,15 +6,19 @@ from onlainshop.settings import EMAIL_HOST_USER
 from .models import SendMail
 # Create your views here.
 def show_feedback(request):
+    if request.COOKIES.get('LogIn') is not None:
+        login = "true"
+    else:
+        login = 'false'
     if request.method == "POST":
         if request.POST.get('name') == None:
             search_req = request.POST.get('searched-product')
             list_searched = Product.objects.filter(name__contains=search_req)
             if len(list_searched) < 1:
                 nothing = f"We doesn't have product named {search_req}"
-                respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'nothing':nothing})
+                respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'nothing':nothing,'login':login})
                 return respose
-            respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched})
+            respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'login':login})
             return respose
         else:
             name = request.POST.get('name')
@@ -46,18 +50,22 @@ def show_feedback(request):
             if check_email_admin and check_email_user:  
                 SendMail.objects.create(name = name,email=email,order=order)
                 return redirect('../confirmed/')
-    return render(request, 'feedbackapp/feedback.html')
+    return render(request, 'feedbackapp/feedback.html',context={'login':login})
 
 def show_confirmed(request):
+    if request.COOKIES.get('LogIn') is not None:
+        login = "true"
+    else:
+        login = 'false'
     if request.method == 'POST':
         search_req = request.POST.get('searched-product')
         list_searched = Product.objects.filter(name__contains=search_req)
         if len(list_searched) < 1:
             nothing = f"We doesn't have product named {search_req}"
-            respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'nothing':nothing})
+            respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'nothing':nothing,'login':login})
             return respose
-        respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched})
+        respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'login':login})
         return respose
-    respose = render(request, "feedbackapp/confirmed.html")
+    respose = render(request, "feedbackapp/confirmed.html",context={'login':login})
     return respose
     

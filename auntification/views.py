@@ -6,8 +6,14 @@ from django.db.utils import IntegrityError
 
 # Create your views here.
 def show_registration(request):
-    context={}
-    response  = render(request, "auntificationapp/reg.html")
+    if request.COOKIES.get('LogIn') is not None:
+        login = "true"
+    else:
+        login = 'false'
+    context={
+        'login':login
+    }
+    response  = render(request, "auntificationapp/reg.html",context={'login':login})
     if request.method == "GET" and request.COOKIES.get('LogIn') is not None:
         return redirect('../')
     if request.method == "POST":
@@ -16,9 +22,9 @@ def show_registration(request):
             list_searched = Product.objects.filter(name__contains=search_req)
             if len(list_searched) < 1:
                 nothing = f"We doesn't have product named {search_req}"
-                respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'nothing':nothing})
+                respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'nothing':nothing,'login':login})
                 return respose
-            respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched})
+            respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'login':login})
             return respose
         else:
             name=request.POST.get('name')
@@ -33,7 +39,7 @@ def show_registration(request):
                         if phone != user.phone:
                             UserNew = User(name=request.POST.get('name'),password=request.POST.get('password'),phone=request.POST.get('phone'),email=request.POST.get('email'))
                             UserNew.save()
-                            response  = render(request, "auntificationapp/reg.html")
+                            response  = render(request, "auntificationapp/reg.html",context={'login':login})
                             response.set_cookie('LogIn', True)
                             return response
                         else:
@@ -59,8 +65,14 @@ def show_registration(request):
     return response 
 
 def show_login(request):
-    context={}
-    response = render(request, "auntificationapp/login.html")
+    if request.COOKIES.get('LogIn') is not None:
+        login = "true"
+    else:
+        login = 'false'
+    context={
+        'login':login
+    }
+    response = render(request, "auntificationapp/login.html",context={'login':login})
     if request.method == 'GET' and request.COOKIES.get('LogIn') is not None:
         return redirect('../')
     if request.method == "POST":
@@ -69,9 +81,9 @@ def show_login(request):
             list_searched = Product.objects.filter(name__contains=search_req)
             if len(list_searched) < 1:
                 nothing = f"We doesn't have product named {search_req}"
-                respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'nothing':nothing})
+                respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'nothing':nothing,'login':login})
                 return respose
-            respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched})
+            respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'login':login})
             return respose
         else:
             name = request.POST.get("name")

@@ -54,10 +54,11 @@
                           <a class="btn btn-light" style="border: none;" href="../">About us</a>
                           <a class="btn btn-light" style="border: none;" href="../catalogue">Catalog</a>
                           <a class="btn btn-light" style="border: none;" href="../feedback">Feedback</a>
+                          {% if login == 'false' %}
                           <hr>
                           <a class="btn btn-light" style="border: none;" href="../registration">Registration</a>
-                          
                           <a class="btn btn-light" style="border: none;" href="../login">Login</a>
+                          {% endif %}
                         </div>
                     </div>
                 </div>

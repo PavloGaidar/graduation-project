@@ -60,10 +60,10 @@
         </div>
       </div>
       <div class="cart">
-        <form method="POST" class="addToCart" action="product">
+        <form method="POST" class="addToCart" action="{{ product.pk }}">
           {% csrf_token %}
-          <input type="text" hidden name="add-to-cart">
-          <input type="text" hidden value="{{ product.pk }}" name="product_pk">
+          <input type="text" id="text-input" hidden name="add-to-cart">
+          <input type="text" hidden value="{{ product.pk }}" id="product_pk" name="product_pk">
           <p>{{ product.price }}₴</p>
           <button class="button-add-to-cart" id="load-comments-btn">Add to cart</button>
         </form>
@@ -71,31 +71,54 @@
     </div>
   </div>
 </div>
-<script>
-  $(document).ready(function() {
-    $('#create-comment-btn').click(function(event) {
+  <script>
+      $(document).ready(function() {
+      $('#load-comments-btn').click(function(event) {
       event.preventDefault();
-  
-      let name = $('#name-input').val();
-      let message = $('#message-input').val();
-      let productId = '{{ product.pk }}';
-  
+
+      let name = $('#text-input').val();
+      let productId = $('#product_pk').val();
+
       $.ajax({
         type: 'POST',
-        url: '/comment/create/',  // Replace with the correct URL endpoint for posting comments
+        url: '/product/' + $('#product_pk').val(),  // Replace with the correct URL endpoint for posting comments
         data: {
           'name': name,
-          'message': message,
           'product_pk': productId,
           'csrfmiddlewaretoken': '{{ csrf_token }}'
         },
-        success: function(response) {
-          $('#contact-tab-pane-1').html(response);
-          $('#name-input').val('');
-          $('#message-input').val('');
-        }
+        
+      });
       });
     });
-  });
+  
+  </script>
+<script>
+
+  // $(document).ready(function() {
+  //   $('#create-comment-btn').click(function(event) {
+  //     event.preventDefault();
+  
+  //     let name = $('#name-input').val();
+  //     let message = $('#message-input').val();
+  //     let productId = $('#product_pk').val();
+  
+  //     $.ajax({
+  //       type: 'POST',
+  //       url: '/product/' + $('#product_pk').val(),  // Replace with the correct URL endpoint for posting comments
+  //       data: {
+  //         'name': name,
+  //         'message': message,
+  //         'product_pk': productId,
+  //         'csrfmiddlewaretoken': '{{ csrf_token }}'
+  //       },
+  //       success: function(response) {
+  //         $('#contact-tab-pane-1').html(response);
+  //         $('#name-input').val('');
+  //         $('#message-input').val('');
+  //       }
+  //     });
+  //   });
+  // });
   </script>
 {% endblock %}

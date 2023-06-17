@@ -34,21 +34,45 @@ catalogg
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body filters">
-      <form method="post">
+      <form method="post" action="catalogue">
         {% csrf_token %}
      
       {% for category in additional_category %}
         <div class="manufacturers">
-          <input type="checkbox" class="check" name="check" value="{{ category.pk }}" checked>
+          <input type="checkbox" class="check" id="check-input"  name="check" value="{{ category.pk }}" checked>
           <p>{{category.name}}</p>
         </div>
       {% endfor %}
       
-        <input type="text" hidden name="name" value="filter">
-        <button type="submit" class="btn btn-secondary">Submit filters</button>
+        <input type="text" hidden name="name" id="text-input2" value="filter">
+        <button type="submit" id="submit-btn"  class="btn btn-secondary">Submit filters</button>
       </form>
     </div>
   </div>
 </div>
+<script>
+  
+      $(document).ready(function() {
+      $('#submit-btn').click(function(event) {
+      event.preventDefault();
 
+      let name = $('#check-input').val();
+      
+      
+
+      $.ajax({
+        type: 'POST',
+        url: '/catalogue',  // Replace with the correct URL endpoint for posting comments
+        data: {
+          'name': name,
+
+          'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        
+      });
+      });
+    });
+  
+  
+</script>
 {%endblock%}

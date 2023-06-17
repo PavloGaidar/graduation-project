@@ -14,7 +14,7 @@ cart
             <form method="POST" class="delet_from_cart">
                 {% csrf_token %}
                 <input type="hidden" name="product_pk" value="{{ product.pk}}">
-                <button class="button-delete-from-cart"> Видалити з кошика</button>
+                <button class="button-delete-from-cart"> Delete from cart</button>
 
             </form>
         </div>
@@ -24,6 +24,28 @@ cart
     <h3 style="color: black;">Your cart is empty</h3>
     <a style="color: rgb(30, 81, 146); text-decoration: none;" href="../catalogue">You can click here to redirect to the cart</a>
     {% endif %}
-</div>
+    
+    </div>
+    <button type="button" class="button-modal" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Place an order
+      </button>
+    
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Buy</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
 {%endblock%}

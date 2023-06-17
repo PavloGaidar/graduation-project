@@ -8,7 +8,7 @@ login
         <h1>Login</h1>
         <div class="login" style="border: 1px;">
             
-            <form method="post" class="needs-validation" novalidate>
+            <form method="post" class="needs-validation" id="login-forms" novalidate>
                 {% csrf_token %}
                 <input type="text" name="name" placeholder="input your nickname" class="form-control" required>
                 <div class="invalid-feedback">
@@ -18,7 +18,7 @@ login
                 <div class="invalid-feedback">
                     Please enter your password.
                 </div>
-                <button class=" btn-outline-success">Submit</button>    
+                <button class=" btn-outline-success" id="craet-login-btn" >Submit</button>    
             </form>
             <span class="error_login">{{ error_text }}</span>
             
@@ -27,7 +27,33 @@ login
 </div>
 <style>
 </style>
-
+<!-- <script>
+    $(document).ready(function() {
+    $('#craet-login-btn').click(function(event) {
+      event.preventDefault();
+  
+      let name = $('#name-input').val();
+      let password = $('#password-input').val();
+      
+  
+      $.ajax({
+        type: 'POST',
+        url: '/login/' + $('#product_pk').val(),  // Replace with the correct URL endpoint for posting comments
+        data: {
+          'name': name,
+          'password': password,
+          
+          'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+          $('#contact-tab-pane-1').html(response);
+          $('#name-input').val('');
+          $('#password-input').val('');
+        }
+      });
+    });
+  });
+</script> -->
 <script>
     (() => {
         "use strict";

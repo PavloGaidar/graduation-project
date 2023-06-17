@@ -27,7 +27,7 @@ from auntification.views import show_registration, show_login
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', show_mainpage),
-    path('catalogue/', show_catalog),
+    path('catalogue/', show_catalog, name="catalogue"),
     path('feedback/', show_feedback, name='feedback_view'),
     path('confirmed/', show_confirmed),
     path('cart/', show_cart),
