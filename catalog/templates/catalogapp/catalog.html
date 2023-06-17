@@ -36,43 +36,50 @@ catalogg
     <div class="offcanvas-body filters">
       <form method="post" action="catalogue">
         {% csrf_token %}
-     
-      {% for category in additional_category %}
+        {% for category in additional_category %}
         <div class="manufacturers">
-          <input type="checkbox" class="check" id="check-input"  name="check" value="{{ category.pk }}" checked>
-          <p>{{category.name}}</p>
+          <input type="checkbox" class="check" id="check-input-{{ category.pk }}" name="check" value="{{ category.pk }}" checked>
+          <label for="check-input-{{ category.pk }}">{{ category.name }}</label>
         </div>
-      {% endfor %}
+        {% endfor %}
       
         <input type="text" hidden name="name" id="text-input2" value="filter">
-        <button type="submit" id="submit-btn"  class="btn btn-secondary">Submit filters</button>
+        <button type="submit" id="submit-btn" class="btn btn-secondary">Submit filters</button>
       </form>
+      
     </div>
   </div>
 </div>
 <script>
-  
-      $(document).ready(function() {
-      $('#submit-btn').click(function(event) {
+  $(document).ready(function() {
+    $('#submit-btn').click(function(event) {
       event.preventDefault();
 
-      let name = $('#check-input').val();
+      let checkboxes = document.querySelectorAll('.check:checked').split(",");
+      let names=[];
+      
+      checkboxes.forEach(function(checkbox) {
+        names.push(checkbox.value);
+      });
       
       
+      
+
+      console.log(names);
+      
+      let url = '/catalogue/';
 
       $.ajax({
-        type: 'POST',
-        url: '/catalogue',  // Replace with the correct URL endpoint for posting comments
+        type: "POST",
+        url: url,
         data: {
-          'name': name,
-
-          'csrfmiddlewaretoken': '{{ csrf_token }}'
-        },
-        
-      });
+          'csrfmiddlewaretoken': '{{ csrf_token }}',
+          'names': names,
+        }
       });
     });
-  
-  
+  });
 </script>
+
+
 {%endblock%}

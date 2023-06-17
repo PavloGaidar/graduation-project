@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from catalog.models import Product
-
+from onlainshop.settings import TELEGRAM_BOT_TOKEN, TELEGRAM_BOT_CHAT_ID
+import cart.telegram as tele
 # Create your views here.
 
 
@@ -31,6 +32,17 @@ def show_cart(request):
                 return respose
             respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'login':login})
             return respose
+        if request.POST.get('name') == 'buy':
+            name = request.POST.get('UserName')
+            email = request.POST.get('email')
+            price = 0
+            message = f'Order \nName: {name} \nEmail: {email}\nProduct:'
+            for product in list_products:
+                price += product.price
+                message += f'\n{product.name}, Price:{product.price}$'
+            message += f'\nFinal price - {price}$'
+            tele.bot_send(TELEGRAM_BOT_TOKEN,TELEGRAM_BOT_CHAT_ID,message)
+            print(message)
         else:
             pk_deleted = request.POST.get('product_pk')
 

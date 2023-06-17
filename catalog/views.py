@@ -19,7 +19,8 @@ def show_catalog(request):
             response = render(request, "catalogapp/search.html", context={'search_req': search_req, 'list_searched': list_searched,'login':login})
             return response
         else:
-            checkedbox = request.POST.getlist('check')
+            checkedbox = request.POST.get('name')
+            print(checkedbox,request.POST)
             list_filter = []
             if len(checkedbox) < 1:
                 context = {"list_products": None, 'additional_category': Category.objects.all(),'login':login}
@@ -60,6 +61,7 @@ def show_product(request, product_pk):
                 return respose
             respose = render(request, "catalogapp/search.html",context={'search_req':search_req,'list_searched':list_searched,'login':login})
             return respose
+
         else:
             if request.POST.get('product_pk') == product_pk:
                 if request.COOKIES.get('product') == None:

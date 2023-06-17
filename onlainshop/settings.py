@@ -41,6 +41,7 @@ EMAIL_HOST_PASSWORD = 'aaghlzgmnygyrpwz'
 EMAIL_USE_TLS = True
 
 
+APPEND_SLASH = False
 
 # Application definition
 
@@ -143,9 +144,9 @@ MEDIA_URL = 'media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 
-TELEGRAM_BOT_TOKEN = "AAG_R57pVKswrT6Fpm1pOZg3g_xvovRYif4"
+TELEGRAM_BOT_TOKEN = "6120371861:AAG_R57pVKswrT6Fpm1pOZg3g_xvovRYif4"
 
-# TELEGRAM_BOT_CHAT_ID = 6120371861
+TELEGRAM_BOT_CHAT_ID = -901335274
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
