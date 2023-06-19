@@ -14,8 +14,8 @@
                     <p>{{ product.cost }}</p>
                     <form method="POST" class="delet_from_cart">
                         {% csrf_token %}
-                        <input type="hidden" name="product_pk" value="{{ product.pk }}">
-                        <button class="button-delete-from-cart">Delete from cart</button>
+                        <input type="hidden" name="product_pk" id="product_pk" value="{{ product.pk }}">
+                        <button class="button-delete-from-cart" id="button-delete-from-cart">Delete from cart</button>
                     </form>
                 </div>
             {% endfor %}
@@ -41,7 +41,7 @@
                                 <input type="text" name="UserName" placeholder="Input your name">
                                 <input type="email" name="email" placeholder="Input your email">
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Buy</button>
+                                    <button type="submit"  class="btn btn-primary">Buy</button>
                                 </div>
                             </form>
                         </div>
@@ -54,4 +54,36 @@
             </button>
         {% endif %}
     </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+      $('#button-delete-from-cart').click(function(event) {
+        event.preventDefault();
+  
+        let productId = $('#product_pk').val();
+        
+        let url = '/cart/';
+  
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: {
+            'csrfmiddlewaretoken': '{{ csrf_token }}',
+            'product_pk': productId,
+          },
+          success: function(response) {
+            // Успешное выполнение запроса
+            console.log("Product deleted from cart:", response);
+  
+            // Дополнительные действия после удаления продукта (если необходимо)
+          },
+          error: function(xhr, errmsg, err) {
+            // Обработка ошибок при выполнении запроса (если необходимо)
+            console.log(xhr.status + ": " + xhr.responseText);
+          }
+        });
+      });
+    });
+</script>
 {% endblock %}

@@ -1,7 +1,8 @@
 from .models import Product, Category, Comment
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-
+from django.http import JsonResponse
+import json
 
 def show_catalog(request):
     if request.COOKIES.get('LogIn') is not None:
@@ -14,27 +15,43 @@ def show_catalog(request):
             list_searched = Product.objects.filter(name__contains=search_req)
             if len(list_searched) < 1:
                 nothing = f"We don't have a product named {search_req}"
-                response = render(request, "catalogapp/search.html", context={'search_req': search_req, 'list_searched': list_searched, 'nothing': nothing,'login':login})
+                response = render(request, "catalogapp/search.html", context={'search_req': search_req, 'list_searched': list_searched, 'nothing': nothing, 'login': login})
                 return response
-            response = render(request, "catalogapp/search.html", context={'search_req': search_req, 'list_searched': list_searched,'login':login})
+            response = render(request, "catalogapp/search.html", context={'search_req': search_req, 'list_searched': list_searched, 'login': login})
             return response
         else:
-            checkedbox = request.POST.get('name')
-            print(checkedbox,request.POST)
+            checkedbox = request.POST.getlist('ncheckboxes[]')
+            print(checkedbox, request.POST)
             list_filter = []
+            list_products = list()
             if len(checkedbox) < 1:
-                context = {"list_products": None, 'additional_category': Category.objects.all(),'login':login}
+               
+                context = {"list_products": None, 'additional_category': Category.objects.all(), 'login': login}
                 response = render(request, "catalogapp/catalog.html", context)
                 return response
             else:
+                print(True)
                 for box in checkedbox:
-                    list_filter.append(Category.objects.get(pk=box))
-                list_products = Product.objects.filter(category__in=list_filter)
-                context = {"list_products": list_products, 'additional_category': Category.objects.all(),'login':login}
-                response = render(request, "catalogapp/catalog.html", context)
+                    list_filter.append(Category.objects.get(pk=int(box)))
+                    print(list_filter)
+                for category in list_filter:
+                    product = Product.objects.filter(category=category)
+                    if product in list_products:
+                        continue
+                    else:
+                        if product.exists:
+                            for product2 in product:
+                                list_products.append(product2)
+                        else:
+                            list_products.append(product)
+                        print(list_products)
+                
+                context = {"list_products": list_products, 'additional_category': Category.objects.all(), 'login': login}
+                response = JsonResponse(json.dumps(list_products))
+                # response = render(request, "catalogapp/catalog.html", context=context)
                 return response
 
-    context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all(),'login':login}
+    context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all(), 'login': login}
     response = render(request, "catalogapp/catalog.html", context)
     return response
 
