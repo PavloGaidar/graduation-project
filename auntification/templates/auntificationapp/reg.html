@@ -10,36 +10,39 @@ registration
 
 <div class="reg-blok2">
     <div class="reg-blok">
-        <div class="reg" style="margin-left: 1350px; margin-top:280px;">
-            <h1>registration</h1>
+        <div class="reg" style="margin-left: 1350px; margin-top:328px;">
+            <h1 style="color: rgb(255, 255, 255);">Registration</h1>
             <form method="post" class="needs-validation" novalidate>
                 {% csrf_token %}
-                <div class="mb-3">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="input your nickname" required>
-                    <div class="invalid-feedback" style="margin-left: -120px;margin-top:-27px">
+                <div class="mb-3" style="height: 52px;">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Input your nickname" required>
+                    <div class="invalid-feedback" >
                         Wrong username!
                     </div>
                 </div>
-                <div class="mb-3">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="input your email" required>
-                    <div class="invalid-feedback" style="margin-left: -455px;margin-top:-31px;width:auto">
-                        The email address should follow the pattern <strong>example@example.com</strong>
+                <div class="mb-3" style="height: 52px;">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Input your email" required>
+                    <div class="invalid-feedback">
+                        Misspelled email
                     </div>
                 </div>
-                <div class="mb-3">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="input your password" required>
-                    <div class="invalid-feedback" style="margin-left: -167px;margin-top:-27px">
+                <div class="mb-3" style="height: 52px;">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Input your password" required>
+                    <div class="invalid-feedback" >
                         Your password isn't safe!
                     </div>
                 </div>
-                <div class="mb-3">
-                    <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="repeat your password" required>
-                    <div class="invalid-feedback" style="margin-left: -301px;margin-top:-30px;width:auto;">
-                        Confirm Password are not the same Password
+                <div class="mb-3" style="height: 52px;">
+                    <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Repeat your password" required>
+                    <div class="invalid-feedback" >
+                        Passwords don't match
                     </div>
                 </div>
-                <div class="mb-3">
-                    <input type="text" class="tele" data-inputmask="'mask': '+99(999)-999-9999', 'showMaskOnHover': false, 'placeholder': '*'" name="phone" required>
+                <div class="mb-3" style="height: 52px;">
+                    <input type="text" class="form-tele" data-inputmask="'mask': '+38(999)-999-9999', 'showMaskOnHover': false, 'placeholder': '*'" name="Phone" required>
+                    <div class="invalid-feedback" >
+                        Incorrect number dialled
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -72,9 +75,9 @@ registration
           );
         });
       })();
-    let allIns = document.querySelectorAll(".tele");
+    let allIns = document.querySelectorAll(".form-tele");
     Inputmask().mask(allIns);
-    [...allIns].map(el => el.setAttribute('placeholder', "+**(***)-***-****"));
+    [...allIns].map(el => el.setAttribute('placeholder', "+38(***)-***-****"));
 
     $('#jqp input').inputmask("phone", {
     placeholder: '#',
