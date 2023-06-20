@@ -22,4 +22,5 @@ class Product(models.Model):
 class Comment(models.Model):
     name = models.CharField(max_length=255)
     messages = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
     product = models.ForeignKey(Product,on_delete=models.CASCADE, related_name='comments' )

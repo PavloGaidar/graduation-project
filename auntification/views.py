@@ -30,14 +30,14 @@ def show_registration(request):
             name=request.POST.get('name')
             password = request.POST.get('password')
             password_confirm = request.POST.get('password_confirm')
-            phone=request.POST.get('phone')
+            phone=request.POST.get('Phone')
             email=request.POST.get('email')
             users = User.objects.all()
             for user in users:
                 if name != user.name:
                     if email != user.email:
                         if phone != user.phone:
-                            UserNew = User(name=request.POST.get('name'),password=request.POST.get('password'),phone=request.POST.get('phone'),email=request.POST.get('email'))
+                            UserNew = User(name=request.POST.get('name'),password=request.POST.get('password'),phone=request.POST.get('Phone'),email=request.POST.get('email'))
                             UserNew.save()
                             response  = render(request, "auntificationapp/reg.html",context={'login':login})
                             response.set_cookie('LogIn', True)

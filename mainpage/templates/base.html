@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{%block name%}{%endblock%}</title>
+    <link rel="icon" type="image/x-icon" href="../../media/website.ico">
+    <title>ByteBliss</title>
     {% block css %}{% endblock %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -41,7 +42,7 @@
         
         <div class="upper">
             <img src="/media/Group 2.png" alt="" class="logo">
-            <div class="hot-bar">
+            <!-- <div class="hot-bar">
                 <div class="burger-menu">
                     <div class="dropdown">
                         <button onclick="toggleDropdown()" class="dropbtn btn btn-primary" style="--bs-btn-bg: #0d6dfd00; 
@@ -56,8 +57,8 @@
                           <a class="btn btn-light" style="border: none;" href="../feedback">Feedback</a>
                           {% if login == 'false' %}
                           <hr>
-                          <a class="btn btn-light" style="border: none;" href="../registration">Registration</a>
-                          <a class="btn btn-light" style="border: none;" href="../login">Login</a>
+                          <a class="btn btn-light" style="border: none;" href="../registration/">Registration</a>
+                          <a class="btn btn-light" style="border: none;" href="../login/">Login</a>
                           {% endif %}
                         </div>
                     </div>
@@ -78,7 +79,85 @@
             <div class=" cart">
                 <a href="../cart/"><img src="/media/Vector.png" alt=""></a>
             </div>
-            </div>
+            </div> -->
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button> -->
+                    <div class="dropdown navbar-toggler border border-0">
+                        <button onclick="toggleDropdown()" class="dropbtn btn btn-primary" style="--bs-btn-bg: #0d6dfd00; --bs-btn-border-color: #0d6dfd00;" >
+                            <span class="bar" style="width: 33px; height: 4px;"></span>
+                            <span class="bar" style="width: 33px; height: 4px;"></span>
+                            <span class="bar" style="width: 33px; height: 4px;"></span>
+                            </button>
+                        <div id="myDropdown" class="dropdown-content" style="position: absolute; width: 250px;">
+                            <div class="searchoo" style="width: 100%;">
+                                <nav class="navbar" style="width: 100%;">
+                                    <div class="container-fluid search2" style="width: 98%;">
+                                    <form class="d-flex" role="search" method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="name" value="search">
+                                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched-product">
+                                        <button class="btn btn-outline-success" type="submit">Search</button>
+                                    </form>
+                                    </div>
+                                </nav>
+                            </div>
+                            <a class="btn btn-light" style="border: none;" href="../">About us</a>
+                            <a class="btn btn-light" style="border: none;" href="../catalogue/">Catalog</a>
+                            <a class="btn btn-light" style="border: none;" href="../feedback/">Feedback</a>
+                            <a class="btn btn-light" style="border: none;" href="../cart/">Cart</a>
+                            {% if login == 'false' %}
+                            <hr>
+                            <a class="btn btn-light" style="border: none;" href="../registration/">Registration</a>
+                            <a class="btn btn-light" style="border: none;" href="../login/">Login</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                  <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <div class="burger-menu">
+                            <div class="dropdown">
+                                <button onclick="toggleDropdown()" class="dropbtn btn btn-primary" style="--bs-btn-bg: #0d6dfd00; 
+                                --bs-btn-border-color: #0d6dfd00;" >
+                                    <span class="bar" style="width: 33px; height: 4px;"></span>
+                                    <span class="bar" style="width: 33px; height: 4px;"></span>
+                                    <span class="bar" style="width: 33px; height: 4px;"></span>
+                                    </button>
+                                <div id="myDropdown" class="dropdown-content" style="border: none;">
+                                    <a class="btn btn-light" style="border: none;" href="../">About us</a>
+                                    <a class="btn btn-light" style="border: none;" href="../catalogue/">Catalog</a>
+                                    <a class="btn btn-light" style="border: none;" href="../feedback">Feedback</a>
+                                    {% if login == 'false' %}
+                                    <hr>
+                                    <a class="btn btn-light" style="border: none;" href="../registration/">Registration</a>
+                                    <a class="btn btn-light" style="border: none;" href="../login/">Login</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="searchoo" >
+                        <nav class="navbar">
+                            <div class="container-fluid search2">
+                            <form class="d-flex" role="search" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="name" value="search">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched-product">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class=" cart" style="scale: 0.7;">
+                        <a href="../cart/"><img src="/media/Vector.png" alt=""></a>
+                    </div>
+                  </div>
+                </div>
+              </nav>
         </div>
 
     </head>
@@ -104,5 +183,12 @@
                 <p>+380505506300</p>
             </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+    <script>
+        $(document).on('click',function(){
+        $('.collapse').collapse('hide');
+        })
+        </script> 
 </body>
 </html>

@@ -10,9 +10,13 @@
 ::-webkit-scrollbar-thumb:hover {   
     background:#1C454A;  
 }
+.error strong{
+    text-emphasis-color: red;
+}
 .button-modal{
-    position:absolute;
-    top: 73%;
+    position:sticky;
+    /* position: relative; */
+    /* top: 19%; */
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -22,8 +26,8 @@
     border-radius: 50px;
     border: 5px solid #378A95;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 60%;
 }
-
 .searched-products .catalogg h2 {
     text-align: center;
     font-size: 15px;
@@ -106,29 +110,37 @@
 
 
 main{
+    width: 100%;
     min-height: 55.5%;
     background-color: #296770;
     padding-top:10px;
     padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+.dropdown-menu{
+    width: 80%;
 }
 .product-block233{
-    min-height: 55.5%;
+    min-height: 100%;
     min-width: 70%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-sizing: border-box;
-
+    flex-direction: column;
+    /* box-sizing: border-box; */
+    margin-top: 50px;
 
     display: flex;
-    flex-direction: row;
+    gap: 15px;
+    /* flex-direction: row; */
     justify-content: center;
     align-items: center;
-    margin-left: 9px;
+    /* margin-left: 9px; */
     
     
-    left: 20px;
-    top: 20px;
+    /* left: 20px;
+    top: 20px; */
     color: #fff;
 }
 .product-3 h2{
@@ -153,8 +165,6 @@ main{
 
 
 .products-1337zxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxc p{
-
-    font-size: 18px;
     line-height: 16px;
     display: flex;
     align-items: center;
@@ -166,13 +176,13 @@ main{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
+    padding: 15px;
     gap: 17px;
     
     width: 90%;
     height: 100%;
-    min-height: 70%;
-
+    min-height: 100%;
+    margin-bottom: 50px;
     background-color: #FFFFFF;
     border-radius: 20px;
 
@@ -183,8 +193,7 @@ main{
 /* Auto layout */
 
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+
     text-align: center;
     align-items: center;
     padding: 20px 62px 10px 15px;
@@ -203,35 +212,130 @@ main{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    
-    width: 200px;
-    height: 50px;
-    left: 20px;
-    top: 20px;
     color: #fff;
     background: #296770;
     border-radius: 50px;
     border: 5px solid #378A95;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
 footer{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 10px 4px 10px 100px;
-    gap: 134px;
-    
+    flex-wrap: wrap;
+    /* padding: 10px 4px 10px 100px; */
+    gap: 10%;
+    padding: 5%;
+    padding-bottom: 3%;
     position: relative;
     width: 100%;
-    height: 200px;
-
+    /* height: 210px; */
+    scale: 1;
     /* main/800
 
     main/800
     */
     background: #1C454A;
+}
+/* footer img{
+    scale: 0.5;
+} */
+@media (min-width: 800px) and (max-width: 1400px) {
+    .footer {
+      font-size: 20px;
+      min-height: 210px;
+    }
+    footer img{
+        scale: 1;
+    }
+    .products-1337zxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxc{
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px;
+        gap: 20px;
+    }
+    .products-1337zxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxc form button{
+        width: 200px;
+        height: 50px;
+    }
+    .products-1337zxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxc p{
+        font-size: 18px;
+    }
+    .features{
+        flex-direction: row;
+        justify-content:space-between;
+        padding: 30px;
+    }
+    .product-description{
+        width: 80%;
+    }
+}
+  
+  /* Стилі для екранів шириною між 768px і 991px */
+@media (min-width: 393px) and (max-width: 800px) {
+    .footer {
+    font-size: 16px;
+    min-height: 300px;
+    }
+    footer img{
+        scale: 0.7;
+    }
+    .icon{
+        flex-direction: row;
+    }
+    .products-1337zxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxc{
+        flex-direction: column;
+        padding: 5px;
+    }
+    .products-1337zxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxc form button{
+        width: 200px;
+        height: 50px;
+    }
+    .products-1337zxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxc p{
+        font-size: 18px;
+    }
+    .features{
+        flex-direction: column;
+    }
+    .product-description{
+        width: 80%;
+    }
+    .features{
+        justify-content:center;
+    }
+}
+
+/* Стилі для екранів шириною 992px і більше */
+@media (min-width: 280px) and (max-width: 393px) {
+    .footer {
+    font-size: 10px;
+    min-height: 400px;
+    }
+    footer img{
+        scale: 0.5;
+    }
+    .products-1337zxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxc{
+        flex-direction: column;
+        padding: 5px;
+    }
+    .products-1337zxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxc form button{
+        width: 150px;
+        height: 40px;
+    }
+    .products-1337zxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxczxc p{
+        font-size: 16px;
+    }
+    .features{
+        flex-direction: column;
+    }
+    .product-description{
+        width: 95%;
+    }
+    .features{
+        justify-content:center;
+    }
 }
 .email p{
     color: #FFFFFF;
@@ -251,7 +355,7 @@ footer{
 }
 .product-block{
     width: 100%;
-    height: 80%;
+    min-height: 100%;
     background-color:  #296770;
     flex-direction: row;
     display: flex;
@@ -262,14 +366,10 @@ footer{
 
 .features{
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content:space-between;
-    padding: 32px 0px 10px 10px;
     gap: 10px;
-    width: 95%;
-    height: 100%;
-
+    width: 97%;
+    min-height: 100%;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -281,14 +381,17 @@ footer{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    justify-content:center;
     align-items: center;
-    gap: 34px;
-    width: 60%;  
-    height: 100%;
+    gap: 20%;  
+    min-height: 100%;
 }
 .des-features{
     display: flex;
+    justify-content: center;
     flex-direction: column;
+    min-height: 100%;
+
 }
 
 .description{
@@ -458,6 +561,8 @@ input[type="checkbox"]{
 
 .reg-blok2{
     display:flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 55.5%;
     background: #296770;
@@ -559,8 +664,8 @@ input[type="checkbox"]{
 }
 
 .reg-blok{
-    width: 5%;
-    height: 30%;
+    width: 100%;
+    height: 55.5%;
     display: flex;
     justify-content: center;
     align-items: center;  
@@ -570,6 +675,8 @@ input[type="checkbox"]{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    margin: 0;
 }
     .login-blok .login button{
         box-sizing: border-box;
@@ -684,7 +791,26 @@ input[type="checkbox"]{
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 90px;
     }
+.button-add-coment{
+    box-sizing: border-box;
+    resize: none;
+    /* Auto layout */
     
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    width: 150px;
+    height: 40px;
+    left: 20px;
+    top: 20px;
+    color: #fff;
+    background: #296770;
+    border-radius: 50px;
+    border: 5px solid #378A95;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+} 
 
 .d-flex{
     display: flex;
@@ -723,10 +849,13 @@ input[type="checkbox"]{
     justify-content: center;
 
     box-sizing: border-box;
-    padding: 20px;
-    gap: 10%;
+    /* padding: 20px; */
+    gap: 3%;
     width: 100%;
     height: 120px;
+}
+.hot-bar img{
+    scale: 0.6;
 }
 /* .dropdown-menu{
     position: absolute;

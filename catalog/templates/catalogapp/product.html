@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 
-{% block name %}
-  {{ product.name }}
-{% endblock %}
-
 {% block content %}
 <div class="product-block">
   <div class="features">
@@ -13,45 +9,80 @@
     <div class="product-description">
       <div class="des-features">
         <h3>{{ product.name }}</h3>
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+        <nav class="navbar w-100">
+          <div class="container-fluid w-100">
+            <button class="navbar-toggler w-100" type="button" style="padding: 0;" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </nav>
+        <div class="collapse" id="navbarToggleExternalContent" style="position:relative">
+          <div class=" p-1">
+            <ul class="nav nav-tabs" style="display: flex;justify-content: center;"  id="myTab" role="tablist">
+              <li class="nav-item p-2" role="presentation">
+                <button class="btn btn-outline-secondary active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                  type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Description</button>
+              </li>
+              <li class="nav-item p-2" role="presentation">
+                <button class="btn btn-outline-secondary" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                  type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Features</button>
+              </li>
+              <li class="nav-item p-2" role="presentation">
+                <button class="btn btn-outline-secondary" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                  type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Create comments</button>
+              </li>
+              <li class="nav-item p-2" role="presentation">
+                <button class="btn btn-outline-secondary" id="contact-tab-1" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1"
+                  type="button" role="tab" aria-controls="contact-tab-pane-1" aria-selected="false">Comments</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- <ul class="nav nav-tabs"  id="myTab" role="tablist">
+          <li class="nav-item p-2" role="presentation">
+            <button class="btn btn-outline-secondary active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
               type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Description</button>
           </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+          <li class="nav-item p-2" role="presentation">
+            <button class="btn btn-outline-secondary" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
               type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Features</button>
           </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+          <li class="nav-item p-2" role="presentation">
+            <button class="btn btn-outline-secondary" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
               type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Create comments</button>
           </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="contact-tab-1" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1"
+          <li class="nav-item p-2" role="presentation">
+            <button class="btn btn-outline-secondary" id="contact-tab-1" data-bs-toggle="tab" data-bs-target="#contact-tab-pane-1"
               type="button" role="tab" aria-controls="contact-tab-pane-1" aria-selected="false">Comments</button>
           </li>
-        </ul>
+        </ul> -->
+
         <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" style="height: 60%;" id="home-tab-pane" role="tabpanel"
+          <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
             aria-labelledby="home-tab" tabindex="0">{{ product.description }}</div>
-          <div class="tab-pane fade" style="height: 60%;" id="profile-tab-pane" role="tabpanel"
+          <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
             aria-labelledby="profile-tab" tabindex="0">{{ product.features }}</div>
-            <div class="tab-pane fade" style="height: 60%;" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
               <form action="" method="post" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                 {% csrf_token %}
-                <input type="text" name="name-massages" id="name-input" required placeholder="Your name" style="text-align: center; margin-top: 10px;">
-                <input type="text" name="messages" id="#message-input" required placeholder="Your message" style="text-align: center; margin-top: 10px;">
-                <button class="button-add-coment" id="create-comment-btn" style="border-radius: 5px;">Create</button>
+                <input type="text" name="name-massages" onsubmit="return validateCommentForm()" id="name-input" required placeholder="Your name" style="text-align: center; margin-top: 10px;width: 260px;">
+                <textarea name="messages" onsubmit="return validateCommentForm()" id="message-input" required placeholder="Your message" style="text-align: center; margin-top: 10px;resize: none;width: 260px;height: 60px;color: grey;"></textarea>
+                <p class="error text-danger" hidden id="error-message-comment"><strong>{{ error_comment }}</strong></p>
+                <button class="button-add-coment" id="create-comment-btn">Create</button>
               </form>
             </div>
           <div class="tab-pane fade" style="height: 195px; overflow-y: scroll;" id="contact-tab-pane-1" role="tabpanel" aria-labelledby="contact-tab-1" tabindex="0">
             <div class="product-3" style="border: 1px solid #ccc; padding: 10px; border-radius: 5px; margin-top: 10px;">
               {% for comment in product.comments.all %}
               <div class="product-4">
-                <h2>{{ comment.name }}</h2>
-                <p>{{ comment.message }}</p>
-                <p>Created at: {{ comment.created_at|date:"F d, Y H:i" }}</p>
+                
+                <h2><strong>{{ comment.name }}</strong></h2>
+                <p style="font-size: 14px;">Created at: {{ comment.created_at }}</p>
+                <p>{{ comment.messages }}</p>
+                
               </div>
+              <hr>
               {% empty %}
               <p>No comments available.</p>
               {% endfor %}
@@ -95,30 +126,5 @@
   </script>
 <script>
 
-  // $(document).ready(function() {
-  //   $('#create-comment-btn').click(function(event) {
-  //     event.preventDefault();
-  
-  //     let name = $('#name-input').val();
-  //     let message = $('#message-input').val();
-  //     let productId = $('#product_pk').val();
-  
-  //     $.ajax({
-  //       type: 'POST',
-  //       url: '/product/' + $('#product_pk').val(),  // Replace with the correct URL endpoint for posting comments
-  //       data: {
-  //         'name': name,
-  //         'message': message,
-  //         'product_pk': productId,
-  //         'csrfmiddlewaretoken': '{{ csrf_token }}'
-  //       },
-  //       success: function(response) {
-  //         $('#contact-tab-pane-1').html(response);
-  //         $('#name-input').val('');
-  //         $('#message-input').val('');
-  //       }
-  //     });
-  //   });
-  // });
   </script>
 {% endblock %}

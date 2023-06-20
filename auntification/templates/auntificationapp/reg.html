@@ -1,45 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block css %}
-<link rel="stylesheet" href="{% static 'css.style.css' %}">
-{% endblock %}
-{% block name %}
-registration
-{% endblock %}
 {% block content %}
 
 <div class="reg-blok2">
     <div class="reg-blok">
-        <div class="reg" style="margin-left: 1350px; margin-top:328px;">
+        <div class="reg" >
             <h1 style="color: rgb(255, 255, 255);">Registration</h1>
             <form method="post" class="needs-validation" novalidate>
                 {% csrf_token %}
-                <div class="mb-3" style="height: 52px;">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Input your nickname" required>
+                <div class="mb-3" style="height: 52px;width: 200px;">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Input your nickname" autocomplete="off" required>
                     <div class="invalid-feedback" >
                         Wrong username!
                     </div>
                 </div>
-                <div class="mb-3" style="height: 52px;">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Input your email" required>
+                <div class="mb-3" style="height: 52px;width: 200px;">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Input your email" autocomplete="off" required>
                     <div class="invalid-feedback">
                         Misspelled email
                     </div>
                 </div>
-                <div class="mb-3" style="height: 52px;">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Input your password" required>
+                <div class="mb-3" style="height: 52px;width: 200px;">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Input your password" autocomplete="off" required>
                     <div class="invalid-feedback" >
                         Your password isn't safe!
                     </div>
                 </div>
-                <div class="mb-3" style="height: 52px;">
-                    <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Repeat your password" required>
+                <div class="mb-3" style="height: 52px;width: 200px;">
+                    <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Repeat your password" autocomplete="off" required>
                     <div class="invalid-feedback" >
                         Passwords don't match
                     </div>
                 </div>
-                <div class="mb-3" style="height: 52px;">
-                    <input type="text" class="form-tele" data-inputmask="'mask': '+38(999)-999-9999', 'showMaskOnHover': false, 'placeholder': '*'" name="Phone" required>
+                <div class="mb-3" style="height: 52px;width: 200px;">
+                    <input type="text" class="form-tele" id="phone" data-inputmask="'mask': '+38(999)-999-9999', 'showMaskOnHover': false, 'placeholder': '*'" name="Phone" required style="width: 200px;">
                     <div class="invalid-feedback" >
                         Incorrect number dialled
                     </div>

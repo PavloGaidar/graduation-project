@@ -2,7 +2,7 @@ from .models import Product, Category, Comment
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
-import json
+from django.forms.models import model_to_dict
 
 def show_catalog(request):
     if request.COOKIES.get('LogIn') is not None:
@@ -45,10 +45,8 @@ def show_catalog(request):
                         else:
                             list_products.append(product)
                         print(list_products)
-                
-                context = {"list_products": list_products, 'additional_category': Category.objects.all(), 'login': login}
-                response = JsonResponse(json.dumps(list_products))
-                # response = render(request, "catalogapp/catalog.html", context=context)
+                context = {"list_products": None, 'additional_category': Category.objects.all(), 'login': login}
+                response = render(request, "catalogapp/catalog.html", context)
                 return response
 
     context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all(), 'login': login}
@@ -92,7 +90,24 @@ def show_product(request, product_pk):
             else:
                 name = request.POST.get('name-massages')
                 messages = request.POST.get('messages')
-                Comment.objects.create(name=name, messages=messages, product=product)     
+                for number in '0123456789':
+                    if number in name:
+                        context['error_comment'] = 'Name cannot contain any number'
+                        response = render(request, 'catalogapp/product.html', context)
+                        print('work1')
+                        print(context)
+                        return response
+                    
+                for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz':
+                    if letter not in messages:
+                        context['error_comment'] = 'Message cannot contain only number'
+                        response = render(request, 'catalogapp/product.html', context)
+                        print('work2')
+                        return response 
+                        
+                
+
+                Comment.objects.create(name=name, messages=messages , product=product)     
                 response = render(request, 'catalogapp/product.html', context)
                 return response
 
