@@ -12,8 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous" defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" defer></script>
+    <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js" defer></script>
     <script>
         function toggleDropdown() {
         document.getElementById("myDropdown").classList.toggle("show");
@@ -42,56 +42,17 @@
         
         <div class="upper">
             <img src="/media/Group 2.png" alt="" class="logo">
-            <!-- <div class="hot-bar">
-                <div class="burger-menu">
-                    <div class="dropdown">
-                        <button onclick="toggleDropdown()" class="dropbtn btn btn-primary" style="--bs-btn-bg: #0d6dfd00; 
-                        --bs-btn-border-color: #0d6dfd00;" >
-                            <span class="bar" style="width: 33px; height: 4px;"></span>
-                            <span class="bar" style="width: 33px; height: 4px;"></span>
-                            <span class="bar" style="width: 33px; height: 4px;"></span>
-                          </button>
-                        <div id="myDropdown" class="dropdown-content" style="border: none;">
-                          <a class="btn btn-light" style="border: none;" href="../">About us</a>
-                          <a class="btn btn-light" style="border: none;" href="../catalogue/">Catalog</a>
-                          <a class="btn btn-light" style="border: none;" href="../feedback">Feedback</a>
-                          {% if login == 'false' %}
-                          <hr>
-                          <a class="btn btn-light" style="border: none;" href="../registration/">Registration</a>
-                          <a class="btn btn-light" style="border: none;" href="../login/">Login</a>
-                          {% endif %}
-                        </div>
-                    </div>
-                </div>
-            
-            <div class="searchoo">
-                <nav class="navbar">
-                    <div class="container-fluid search2">
-                    <form class="d-flex" role="search" method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="name" value="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched-product">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
-                    </div>
-                </nav>
-            </div>
-            <div class=" cart">
-                <a href="../cart/"><img src="/media/Vector.png" alt=""></a>
-            </div>
-            </div> -->
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
-                    <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button> -->
-                    <div class="dropdown navbar-toggler border border-0">
-                        <button onclick="toggleDropdown()" class="dropbtn btn btn-primary" style="--bs-btn-bg: #0d6dfd00; --bs-btn-border-color: #0d6dfd00;" >
-                            <span class="bar" style="width: 33px; height: 4px;"></span>
-                            <span class="bar" style="width: 33px; height: 4px;"></span>
-                            <span class="bar" style="width: 33px; height: 4px;"></span>
-                            </button>
-                        <div id="myDropdown" class="dropdown-content" style="position: absolute; width: 250px;">
+                    <nav class="navbar navbar-toggler w-100" style="border: none;">
+                        <div class="container-fluid w-100" style="border: none;">
+                          <button id="button-collapse" class="navbar-toggler w-100 bg-light" type="button" style="padding: 0; border: none;" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon" style="color: white;"></span>
+                          </button>
+                        </div>
+                      </nav>
+                      <div class="collapse" id="navbarToggleExternalContent" style="position:relative; z-index: 6;" data-bs-theme="white"> 
+                        <div class=" p-1" style="background-color: #296770; display: flex;flex-direction: column;">
                             <div class="searchoo" style="width: 100%;">
                                 <nav class="navbar" style="width: 100%;">
                                     <div class="container-fluid search2" style="width: 98%;">
@@ -104,17 +65,17 @@
                                     </div>
                                 </nav>
                             </div>
-                            <a class="btn btn-light" style="border: none;" href="../">About us</a>
-                            <a class="btn btn-light" style="border: none;" href="../catalogue/">Catalog</a>
-                            <a class="btn btn-light" style="border: none;" href="../feedback/">Feedback</a>
-                            <a class="btn btn-light" style="border: none;" href="../cart/">Cart</a>
+                            <a class="btn btn-outline-secondary text-light" style="border: none;" href="../">About us</a>
+                            <a class="btn btn-outline-secondary text-light" style="border: none;" href="../catalogue/">Catalog</a>
+                            <a class="btn btn-outline-secondary text-light" style="border: none;" href="../feedback/">Feedback</a>
+                            <a class="btn btn-outline-secondary text-light" style="border: none;" href="../cart/">Cart</a>
                             {% if login == 'false' %}
-                            <hr>
-                            <a class="btn btn-light" style="border: none;" href="../registration/">Registration</a>
-                            <a class="btn btn-light" style="border: none;" href="../login/">Login</a>
+                            <hr color="white" style="color: white;"> 
+                            <a class="btn btn-outline-secondary text-light" style="border: none;" href="../registration/">Registration</a>
+                            <a class="btn btn-outline-secondary text-light" style="border: none;" href="../login/">Login</a>
                             {% endif %}
                         </div>
-                    </div>
+                      </div>
                   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
@@ -126,14 +87,14 @@
                                     <span class="bar" style="width: 33px; height: 4px;"></span>
                                     <span class="bar" style="width: 33px; height: 4px;"></span>
                                     </button>
-                                <div id="myDropdown" class="dropdown-content" style="border: none;">
-                                    <a class="btn btn-light" style="border: none;" href="../">About us</a>
-                                    <a class="btn btn-light" style="border: none;" href="../catalogue/">Catalog</a>
-                                    <a class="btn btn-light" style="border: none;" href="../feedback">Feedback</a>
+                                <div id="myDropdown" style="border-radius: 10px;" class="dropdown-content">
+                                    <a class="btn btn-outline-secondary" style="border: none;" href="../">About us</a>
+                                    <a class="btn btn-outline-secondary" style="border: none;" href="../catalogue/">Catalog</a>
+                                    <a class="btn btn-outline-secondary" style="border: none;" href="../feedback">Feedback</a>
                                     {% if login == 'false' %}
                                     <hr>
-                                    <a class="btn btn-light" style="border: none;" href="../registration/">Registration</a>
-                                    <a class="btn btn-light" style="border: none;" href="../login/">Login</a>
+                                    <a class="btn btn-outline-secondary" style="border: none;" href="../registration/">Registration</a>
+                                    <a class="btn btn-outline-secondary" style="border: none;" href="../login/">Login</a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -187,8 +148,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
     <script>
         $(document).on('click',function(){
-        $('.collapse').collapse('hide');
-        })
+        $('#button-collapse').collapse('hide');
+        });
         </script> 
 </body>
 </html>

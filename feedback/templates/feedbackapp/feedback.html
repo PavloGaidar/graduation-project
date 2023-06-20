@@ -1,23 +1,22 @@
 {% extends 'base.html' %}
 {%block content%}
 
-       <div class="feedback-block">
-                        <div class="feedbackk">
-                            <h1>feedback</h1>
+<div class="feedback-block">
+    <div class="feedbackk">
+         <h1>feedback</h1>
+        <form method="post" class="feedback-form needs-validation" style="display: flex; width: 90%;">
+            {% csrf_token %}
             
+                <input type="text" name = "name" placeholder="name" style="width: 100%;" required>
                 
-                    <form method="post" class="feedback-form needs-validation">
-                        {% csrf_token %}
-                        
-                            <input type="text" name = "name" placeholder="name" required>
-                            
-                            <input type="email" name = "email" placeholder="email" required>
+                <input type="email" name = "email" placeholder="email" style="width: 100%;" required>
 
-                            <textarea name="order" id="" cols="22" style="height: 130px;" rows="4" placeholder="feedback" required> </textarea>
-                            
-                            <input type="submit" class="btn btn-primary"  value="Send"  >
-                        
-                    </form>
+                <!-- <textarea name="order" id="" cols="22" style="height: 130px;" rows="4" placeholder="feedback" required> </textarea> -->
+                <div class="form-floating" style="width: 100%;">
+                    <textarea class="form-control" aria-placeholder="Leave your feedback here" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px;resize: none; width: 100%;" name="order" required></textarea>
+                    </div>
+                <input type="submit" class="button-leave-feedback"  value="Send">
+        </form>
         
     </div>
 </div>

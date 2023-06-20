@@ -13,6 +13,13 @@
 .error strong{
     text-emphasis-color: red;
 }
+.search-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
 .button-modal{
     position:sticky;
     /* position: relative; */
@@ -111,7 +118,7 @@
 
 main{
     width: 100%;
-    min-height: 55.5%;
+    min-height: 48.9%;
     background-color: #296770;
     padding-top:10px;
     padding-bottom: 10px;
@@ -160,7 +167,9 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #FFFFFF;
+    text-align: center;
+    color: white;
+    font-size: 24px;
 }
 
 
@@ -271,6 +280,43 @@ footer{
     .product-description{
         width: 80%;
     }
+    .mainpage{
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .About_Us{
+        width: 60%;
+        height: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* justify-content: space-between; */
+        justify-content: center;
+        background-color: white;
+        padding-top: 10px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-size: 20px;
+    }
+    .About_Us img{
+        max-width: 90%;
+    }
+    .about_us_photo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .about_us_text{
+        padding: 20px;
+        text-align: center;
+    }
+    .feedbackk{
+        width: 60%;
+    }
 }
   
   /* Стилі для екранів шириною між 768px і 991px */
@@ -305,6 +351,43 @@ footer{
     .features{
         justify-content:center;
     }
+    .mainpage{
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .About_Us{
+        width: 98%;
+        height: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        padding-top: 10px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-size: 17px;
+    }
+    .About_Us img{
+        /* scale: 0.5; */
+        max-width: 90%;
+    }
+    .about_us_photo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .about_us_text{
+        padding: 20px;
+        text-align: center;
+    }
+    .feedbackk{
+        width: 75%;
+    }
 }
 
 /* Стилі для екранів шириною 992px і більше */
@@ -336,6 +419,76 @@ footer{
     .features{
         justify-content:center;
     }
+    .mainpage{
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .About_Us{
+        width: 98%;
+        height: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        padding-top: 10px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        font-size: 15px;
+    }
+    .About_Us img{
+        /* scale: 0.5; */
+        max-width: 90%;
+    }
+    .about_us_photo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .about_us_text{
+        padding: 20px;
+        text-align: center;
+    }
+    .feedbackk{
+        width: 90%;
+    }
+}
+.button-leave-feedback{
+    box-sizing: border-box;
+
+    /* Auto layout */
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    width: 150px;
+    height: 40px;
+    left: 20px;
+    top: 20px;
+    color: #fff;
+    background: #296770;
+    border-radius: 50px;
+    border: 5px solid #378A95;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.feedbackk{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding: 10px 10px 10px 20px; */
+    gap: 10px;
+    height: 100%;
+
+
+    background: #FFFFFF;
+    border-radius: 10px;
 }
 .email p{
     color: #FFFFFF;
@@ -520,7 +673,7 @@ footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50%;
+    width: 100%;
 }
 .feedback-form{
     display: flex;
@@ -528,19 +681,7 @@ footer{
     gap: 5px;
     align-items: center;
 }
-.feedbackk{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 10px 10px 20px;
-    gap: 10px;
-    width: 40%;
-    height: 100%;
 
-
-    background: #FFFFFF;
-    border-radius: 40px;
-}
 
 .category-blok{
     width: 100%;
@@ -571,7 +712,8 @@ input[type="checkbox"]{
 .login-blok2{
     display:flex;
     width: 100%;
-    height: 55.5%;
+    height: 100%;
+    padding: 20px;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -652,7 +794,7 @@ input[type="checkbox"]{
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: #52b7c7;
+    color: white;
 }
 
 .error_reg{
@@ -687,11 +829,11 @@ input[type="checkbox"]{
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        width: 70px;
+        width: 200px;
         height: 30px;
         left: 20px;
         top: 20px;
-        
+        color: white;
         background: #296770;
     
         border: 5px solid #378A95;
@@ -699,15 +841,6 @@ input[type="checkbox"]{
         border-radius: 90px;
     }
     
-    .login-blok{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
 
     input[type="text"],
     input[type="email"],
@@ -746,26 +879,30 @@ input[type="checkbox"]{
 
     }
     .login{
-        padding-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
         height: 100%;
+    }
+    .login form{
+        gap: 10px;
     }
     
     .login-blok{
         display: flex;
         flex-direction: column;
+        justify-content: start;
         align-items: center;
-        padding: 10px 10px 10px 20px;
-        gap: 10px;
+        padding: 20px;
+        gap: 50px;
 
-        width: 40%;
+        width: 100%;
         height: 50%;
-
-
     }
     input[type="text"],
     input[type="email"],
     input[type="password"] {
-        
+        width: 200px;
         padding: 6px;
         border: 1px solid #ccc;
         border-radius: 5px;
