@@ -6,15 +6,17 @@
     <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop" style="background-color: white;color: black;">Filter</button>
     
     
-    <div class="cataloggg text-center" id="product-list" style="gap: 20px; margin-top: 20px;">
+    <div class="cataloggg text-center" id="product-list" style="margin-top: 10px;margin-bottom: 10px;">
       {% for product in list_products %}
-      <div class="product product-category-{{ product.category }}" data-name="{{ product.name }}" style="width: 18rem;border-radius: 20px;">
+      <div class="product product-category-{{ product.category }}" data-name="{{ product.name }}" style="display: flex; max-width: 380px;">
         <div class="catalogg">
           <img src="{{ product.image.url }}" class="card-img-top" alt=".s..">
           <div class="card-body">
-            <h2 style="    font-size: 1rem;">{{ product.name }}</h2>
-            <span>{{ product.price }}$</span>
-            <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Detailed description</a>
+            <h2>{{ product.name }}</h2>
+            <div class="price-and-detail">
+              <span>{{ product.price }}$</span>
+              <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Detailed description</a>
+            </div>
           </div>
         </div>
       </div>

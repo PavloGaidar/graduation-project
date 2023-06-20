@@ -103,28 +103,23 @@
   </div>
 </div>
   <script>
-      $(document).ready(function() {
-      $('#load-comments-btn').click(function(event) {
-      event.preventDefault();
+$(document).ready(function() {
+  $('#load-comments-btn').click(function(event) {
+    event.preventDefault();
 
-      let name = $('#text-input').val();
-      let productId = $('#product_pk').val();
+    let name = $('#text-input').val();
+    let productId = $('#product_pk').val();
 
-      $.ajax({
-        type: 'POST',
-        url: '/product/' + $('#product_pk').val(),  // Replace with the correct URL endpoint for posting comments
-        data: {
-          'name': name,
-          'product_pk': productId,
-          'csrfmiddlewaretoken': '{{ csrf_token }}'
-        },
-        
-      });
-      });
+    $.ajax({
+      type: 'POST',
+      url: '/product/' + $('#product_pk').val(),
+      data: {
+        'name': name,
+        'product_pk': productId,
+        'csrfmiddlewaretoken': '{{ csrf_token }}'
+      },
     });
-  
-  </script>
-<script>
-
+  });
+});
   </script>
 {% endblock %}
