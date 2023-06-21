@@ -38,7 +38,7 @@
                         Incorrect number dialled
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" id="create-profile">Submit</button>
             </form>
             <span class="error_reg">{{ error_text }}</span>
         </div>
@@ -70,6 +70,34 @@
         });
       })();
 </script>
+<script>
+$(document).ready(function() {
+    $('#create-profile').click(function(event) {
+        event.preventDefault();
+
+        let name = document.querySelector('#name').value;
+        let email = document.querySelector('#email').value;
+        let password = document.querySelector('#password').value;
+        let password_confirm = document.querySelector('#password_confirm').value;
+        let phone = document.querySelector('#phone').value;
+
+        $.ajax({
+            type: 'POST',
+            url: '../registration/',
+            data: {
+                'name': name,
+                'email': email,
+                'password': password,
+                'password_confirm': password_confirm,
+                'phone': phone,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            
+        });
+        
+    });
+});
+      </script>
 <script>
     (() => {
         "use strict";

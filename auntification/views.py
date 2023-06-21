@@ -17,7 +17,7 @@ def show_registration(request):
     if request.method == "GET" and request.COOKIES.get('LogIn') is not None:
         return redirect('../')
     if request.method == "POST":
-        if request.POST.get('name') == None:
+        if request.POST.get('name') == 'search':
             search_req = request.POST.get('searched-product')
             list_searched = Product.objects.filter(name__contains=search_req)
             if len(list_searched) < 1:
@@ -34,33 +34,34 @@ def show_registration(request):
             email=request.POST.get('email')
             users = User.objects.all()
             for user in users:
-                if name != user.name:
-                    if email != user.email:
-                        if phone != user.phone:
-                            UserNew = User(name=request.POST.get('name'),password=request.POST.get('password'),phone=request.POST.get('phone'),email=request.POST.get('email'))
-                            UserNew.save()
-                            response  = render(request, "auntificationapp/reg.html",context={'login':login})
-                            response.set_cookie('LogIn', True)
-                            return response
+                if password == password_confirm:
+                    if name != user.name:
+                        if email != user.email:
+                            if phone != user.phone:
+                                UserNew = User(name=request.POST.get('name'),password=request.POST.get('password'),phone=request.POST.get('phone'),email=request.POST.get('email'))
+                                UserNew.save()
+                                response  = render(request, "auntificationapp/reg.html",context={'login':login})
+                                response.set_cookie('LogIn', True)
+                                return response
+                            else:
+                                context['error_text']= 'Phone number is already taken'
+                                print("phone")
+                                response  = render(request, "auntificationapp/reg.html", context)
+                                return response
                         else:
-                            context['error_text']= 'Phone number is already taken'
-                            print("phone")
+                            context['error_text']= 'Email is already taken'
+                            print("email")
                             response  = render(request, "auntificationapp/reg.html", context)
                             return response
                     else:
-                        context['error_text']= 'Email is already taken'
-                        print("email")
+                        context['error_text']= 'Nickname is already taken'
+                        print("name")
                         response  = render(request, "auntificationapp/reg.html", context)
                         return response
                 else:
-                    context['error_text']= 'Nickname is already taken'
-                    print("name")
+                    context['error_text']= 'Паролі не співпадають!'
                     response  = render(request, "auntificationapp/reg.html", context)
                     return response
-            else:
-                context['error_text']= 'Паролі не співпадають!'
-                response  = render(request, "auntificationapp/reg.html", context)
-                return response
 
     return response 
 

@@ -20,7 +20,7 @@ def show_catalog(request):
             response = render(request, "catalogapp/search.html", context={'search_req': search_req, 'list_searched': list_searched, 'login': login})
             return response
         else:
-            checkedbox = request.POST.getlist('ncheckboxes[]')
+            checkedbox = request.POST.getlist('check')
             print(checkedbox, request.POST)
             list_filter = []
             list_products = list()
@@ -30,22 +30,8 @@ def show_catalog(request):
                 response = render(request, "catalogapp/catalog.html", context)
                 return response
             else:
-                print(True)
-                for box in checkedbox:
-                    list_filter.append(Category.objects.get(pk=int(box)))
-                    print(list_filter)
-                for category in list_filter:
-                    product = Product.objects.filter(category=category)
-                    if product in list_products:
-                        continue
-                    else:
-                        if product.exists:
-                            for product2 in product:
-                                list_products.append(product2)
-                        else:
-                            list_products.append(product)
-                        print(list_products)
-                context = {"list_products": None, 'additional_category': Category.objects.all(), 'login': login}
+                list_products = Product.objects.filter(category__in=list_filter)
+                context = {"list_products": list_products, 'additional_category': Category.objects.all()}
                 response = render(request, "catalogapp/catalog.html", context)
                 return response
 

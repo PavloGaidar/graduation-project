@@ -49,37 +49,37 @@
   </div>
 </div>
 <script>
-$(document).ready(function() {
-  // Обробник події натискання кнопки або вибору пункту у фільтрі
-  $('#submit-btn').click(function(event) {
-    event.preventDefault();  // Заборонити стандартну поведінку форми
+// $(document).ready(function() {
+//   // Обробник події натискання кнопки або вибору пункту у фільтрі
+//   $('#submit-btn').click(function(event) {
+//     event.preventDefault();  // Заборонити стандартну поведінку форми
 
-    // Отримання обраних категорій
-    var selectedCategories = [];
-    $('input[type=checkbox]:checked').each(function() {
-      selectedCategories.push($(this).val());
-    });
-    let url = '../catalogue'
-    // AJAX-запит до сервера
-    $.ajax({
-      url: '',  // Залиште порожній URL або вкажіть URL для обробки фільтрів
-      type: 'POST',
-      data: {
-        'csrfmiddlewaretoken': '{{ csrf_token }}',
-        'ncheckboxes[]': selectedCategories
-      },
-      success: function(response) {
-        // Оновлення списку товарів
-        $('#product-list').html(response);
-        // $('#product-list').load(response);
-      },
-      error: function(xhr, status, error) {
-        // Обробка помилки
-        console.error(error);
-      }
-    });
-  });
-});
+//     // Отримання обраних категорій
+//     var selectedCategories = [];
+//     $('input[type=checkbox]:checked').each(function() {
+//       selectedCategories.push($(this).val());
+//     });
+//     let url = '../catalogue'
+//     // AJAX-запит до сервера
+//     $.ajax({
+//       url: '',  // Залиште порожній URL або вкажіть URL для обробки фільтрів
+//       type: 'POST',
+//       data: {
+//         'csrfmiddlewaretoken': '{{ csrf_token }}',
+//         'ncheckboxes[]': selectedCategories
+//       },
+//       success: function(response) {
+//         // Оновлення списку товарів
+//         $('#product-list').html(response);
+//         // $('#product-list').load(response);
+//       },
+//       error: function(xhr, status, error) {
+//         // Обробка помилки
+//         console.error(error);
+//       }
+//     });
+//   });
+// });
 
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
