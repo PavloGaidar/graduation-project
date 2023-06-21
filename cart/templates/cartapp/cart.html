@@ -5,21 +5,18 @@
 <div class="product-block233">
     {% if empty != 'true' %}
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post">
+            <div class="modal-dialog modal-dialog-centered h-25">
+                <div class="modal-content 	.modal-sm h-25" style="display: flex;">
+                        
+                    <div class="modal-body 	.modal-sm h-25" style="display: flex; align-items: center;flex-direction: row; flex-wrap: wrap;justify-content: center;" >
+                        <form method="post" style="display: flex; align-items: center; justify-content:center;flex-wrap: wrap; gap: 10px;">
                             {% csrf_token %}
                             <input type="text" name="name" hidden value="buy">
-                            <input type="text" name="UserName" placeholder="Input your name">
-                            <input type="email" name="email" placeholder="Input your email">
-                            <div class="modal-footer">
-                                <button type="submit"  class="btn btn-primary">Buy</button>
-                            </div>
+                            <input type="text" name="UserName" placeholder="Input your name" required>
+                            <input type="email" name="email" placeholder="Input your email" required>
+                            <button type="button" class="order_products" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                            <button type="submit"  class="order_products">Buy</button>
+
                         </form>
                     </div>
                 </div>

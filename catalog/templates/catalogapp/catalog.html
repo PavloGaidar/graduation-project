@@ -8,7 +8,6 @@
     
     <div class="cataloggg text-center" id="product-list" style="margin-top: 10px;margin-bottom: 10px;">
       {% for product in list_products %}
-      <div class="product product-category-{{ product.category }}" data-name="{{ product.name }}" style="display: flex; max-width: 380px;">
         <div class="catalogg">
           <img src="{{ product.image.url }}" class="card-img-top" alt=".s..">
           <div class="card-body">
@@ -19,7 +18,6 @@
             </div>
           </div>
         </div>
-      </div>
       {% endfor %}
     </div>
   </div>
@@ -33,15 +31,16 @@
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body filters">
-      <form method="post">
+      <form method="post" style="width: 100%; display: flex;align-items: center;flex-direction: column;justify-content: end;">
         {% csrf_token %}
-        {% for category in additional_category %}
-        <div class="manufacturers">
-          <input type="checkbox" class="check" id="check-input-{{ category.pk }}" name="check" value="{{ category.pk }}" checked>
-          <label for="check-input-{{ category.pk }}">{{ category.name }}</label>
+        <div class="manufacturers_menu" style="display: flex; width: 95%; align-items: center; flex-direction: row; flex-wrap: wrap;justify-content: center; gap: 10px;">
+          {% for category in additional_category %}
+          <div class="manufacturers">
+            <input type="checkbox" class="check" id="check-input-{{ category.pk }}" name="check" value="{{ category.pk }}" checked>
+            <label for="check-input-{{ category.pk }}">{{ category.name }}</label>
+          </div>
+          {% endfor %}
         </div>
-        {% endfor %}
-      
         <input type="text" hidden name="name" id="text-input2" value="filter">
         <button type="submit" id="submit-btn" class="btn btn-secondary">Submit filters</button>
       </form>

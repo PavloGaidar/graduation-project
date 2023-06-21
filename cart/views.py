@@ -51,6 +51,8 @@ def show_cart(request):
             message += f'\nFinal price - {price}$'
             tele.bot_send(TELEGRAM_BOT_TOKEN,TELEGRAM_BOT_CHAT_ID,message)
             print(message) 
+            response.delete_cookie('product')
+            return response
         else:
             pk_deleted = request.POST.get('product_pk')
 
