@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="mb-3" style="height: 52px;width: 200px;">
-                    <input type="text" class="form-tele" id="phone" data-inputmask="'mask': '+38(999)-999-9999', 'showMaskOnHover': false, 'placeholder': '*'" name="phone" required style="width: 200px;">
+                    <input type="text" class="form-control form-tele" id="phone" data-inputmask="'mask': '+38(999)-999-9999', 'showMaskOnHover': false, 'placeholder': '#'" name="phone" required style="width: 200px;">
                     <div class="invalid-feedback" >
                         Incorrect number dialled
                     </div>
@@ -69,45 +69,71 @@
           );
         });
       })();
-    let allIns = document.querySelectorAll(".form-tele");
-    Inputmask().mask(allIns);
-    [...allIns].map(el => el.setAttribute('placeholder', "+38(***)-***-****"));
+</script>
+<script>
+    (() => {
+        "use strict";
 
-    $('#jqp input').inputmask("phone", {
-    placeholder: '#',
-    showMaskOnHover: false,
-    onKeyValidation: function () {
-        let mt = $(this).inputmask("getmetadata");
-        $('#jqp span').text($(mt['cd']) ($(mt['kk'])));
-        //console.log(mt);
-      }
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach((form) => {
+            form.addEventListener(
+                "submit",
+                (event) => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add("was-validated");
+                },
+                false
+            );
+        });
+    })();
+
+    document.addEventListener("DOMContentLoaded", function() {
+        let formTeleInput = document.querySelector(".form-tele");
+        Inputmask().mask(formTeleInput);
+        formTeleInput.setAttribute('placeholder', "+##(###)-###-####");
+
+        formTeleInput.addEventListener("input", function() {
+            let mt = $(this).inputmask("getmetadata");
+            if (mt && mt['cd'] && mt['cc']) {
+                this.value = `${mt['cd']} (${mt['cc']})`;
+            }
+        });
+
+        Inputmask.extendAliases({
+            my_phone: {
+                alias: "abstractphone",
+                placeholder: '#',
+                phoneCodes: [{
+                    mask: "+987-####",
+                    cc: "zz",
+                    cd: "zzzz",
+                    desc_en: "Moon!",
+                    name_ru: "яяя",
+                    desc_ru: ""
+                }, {
+                    mask: "+789-###",
+                    cc: "yy",
+                    cd: "Y-Y",
+                    desc_en: "Sun!"
+                }],
+                onKeyValidation: function () {
+                    let mt = $(this).inputmask("getmetadata");
+                    if (mt && mt['desc_en']) {
+                        formTeleInput.value = mt['desc_en'];
+                        formTeleInput.style.color = `#${Math.floor(Math.random() * 0x1000000).toString(16).padStart(6, 0)}`;
+                    }
+                }
+            }
+        });
+
+        $(formTeleInput).inputmask("my_phone");
     });
-
-    Inputmask.extendAliases({
-    my_phone: {
-        alias: "abstractphone",
-        placeholder: '*',
-        phoneCodes: [{
-        mask: "+987-***",
-        kk: "zz",
-        cd: "zzzz",
-        desc_en: "Moon!",
-        name_ru: "яяя",
-        desc_ru: ""
-        }, {
-        mask: "+789-***",
-        kk: "yy",
-        cd: "Y-Y",
-        desc_en: "Sun!"
-        }],
-        onKeyValidation: function() {
-        let mt = $(this).inputmask("getmetadata");
-        $('#jqma span').text(mt['desc_en']).css('color',
-        `#${Math.floor(Math.random() * 0x1000000).toString(16).padStart(6, 0)}`);
-        //console.log(mt);
-        }
-    }
-  });
-  $('#jqma input').inputmask("my_phone");
 </script>
 {% endblock %}
