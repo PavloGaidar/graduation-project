@@ -1,3 +1,4 @@
+
 ::-webkit-scrollbar { 
     width: 10px;
 }  /* Track */
@@ -20,6 +21,7 @@
     text-align: center;
     flex-direction: column;
 }
+
 .button-modal{
     position:sticky;
     /* position: relative; */
@@ -181,6 +183,7 @@ main{
     padding-bottom: 10px;
     display: flex;
     justify-content: center;
+    float:inline-start;
 }
 .dropdown-menu{
     width: 80%;
@@ -308,7 +311,7 @@ footer{
 /* footer img{
     scale: 0.5;
 } */
-@media (min-width: 800px) and (max-width: 1400px) {
+@media (min-width: 800px) {
     .footer {
       font-size: 20px;
       min-height: 210px;
