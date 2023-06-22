@@ -2,7 +2,8 @@ from .models import Product, Category, Comment
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
-from django.forms.models import model_to_dict
+import json
+from django.core import serializers
 
 def show_catalog(request):
     if request.COOKIES.get('LogIn') is not None:
@@ -23,17 +24,25 @@ def show_catalog(request):
             checkedbox = request.POST.getlist('check')
             print(checkedbox, request.POST)
             list_filter = []
-            list_products = list()
+            list_products = []  # Створення порожнього списку
+
             if len(checkedbox) < 1:
-               
                 context = {"list_products": None, 'additional_category': Category.objects.all(), 'login': login}
                 response = render(request, "catalogapp/catalog.html", context)
                 return response
             else:
-                list_products = Product.objects.filter(category__in=list_filter)
-                context = {"list_products": list_products, 'additional_category': Category.objects.all()}
+                for box in checkedbox:
+                    list_filter.append(Category.objects.get(pk=box))
+                # list_filter = Product.objects.filter(category__in=list_filter).values()
+                # print(list_filter)
+                # list_products = list(list_filter)
+                # return JsonResponse({'list_products': list_products})
+                list_filter = Product.objects.all().filter(category__in=list_filter)
+                print(list_filter)
+                context = {"list_products": list_filter, 'additional_category': Category.objects.all(), 'login': login}
                 response = render(request, "catalogapp/catalog.html", context)
                 return response
+
 
     context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all(), 'login': login}
     response = render(request, "catalogapp/catalog.html", context)
