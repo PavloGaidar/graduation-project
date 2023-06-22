@@ -68,7 +68,7 @@
                 {% csrf_token %}
                 <input type="text" name="name-massages" onsubmit="return validateCommentForm()" id="name-input" required placeholder="Your name" style="text-align: center; margin-top: 10px;width: 260px;">
                 <textarea name="messages" onsubmit="return validateCommentForm()" id="message-input" required placeholder="Your message" style="text-align: center; margin-top: 10px;resize: none;width: 260px;height: 60px;color: grey;"></textarea>
-                <p class="error text-danger" hidden id="error-message-comment"><strong>{{ error_comment }}</strong></p>
+                <p class="error text-danger" id="error-message-comment"><strong>{{ error_comment }}</strong></p>
                 <button class="button-add-coment" id="create-comment-btn">Create</button>
               </form>
             </div>
@@ -103,23 +103,23 @@
   </div>
 </div>
   <script>
-$(document).ready(function() {
-  $('#load-comments-btn').click(function(event) {
-    event.preventDefault();
+// $(document).ready(function() {
+//   $('#load-comments-btn').click(function(event) {
+//     event.preventDefault();
 
-    let name = $('#text-input').val();
-    let productId = $('#product_pk').val();
+//     let name = $('#text-input').val();
+//     let productId = $('#product_pk').val();
 
-    $.ajax({
-      type: 'POST',
-      url: '/product/' + $('#product_pk').val(),
-      data: {
-        'name': name,
-        'product_pk': productId,
-        'csrfmiddlewaretoken': '{{ csrf_token }}'
-      },
-    });
-  });
-});
-  </script>
+//     $.ajax({
+//       type: 'POST',
+//       url: '/product/' + $('#product_pk').val(),
+//       data: {
+//         'name': name,
+//         'product_pk': productId,
+//         'csrfmiddlewaretoken': '{{ csrf_token }}'
+//       },
+//     });
+//   });
+// });
+//   </script>
 {% endblock %}
