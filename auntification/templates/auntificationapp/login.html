@@ -7,11 +7,11 @@
             
             <form method="post" class="needs-validation" id="login-forms" novalidate>
                 {% csrf_token %}
-                <input type="text" name="name" placeholder="input your nickname" class="form-control" required>
+                <input type="text" name="name" aria-autocomplete="none" placeholder="input your nickname" class="form-control" required>
                 <div class="invalid-feedback">
                     Please enter your nickname.
                 </div>
-                <input type="password" name="password" placeholder="input your password" class="form-control" required>
+                <input type="password" name="password" aria-autocomplete="none" placeholder="input your password" class="form-control" required>
                 <div class="invalid-feedback">
                     Please enter your password.
                 </div>

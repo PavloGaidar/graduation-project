@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from catalog.models import Product
 from onlainshop.settings import TELEGRAM_BOT_TOKEN, TELEGRAM_BOT_CHAT_ID
 import cart.telegram as tele
+from django.core import serializers
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -54,18 +55,24 @@ def show_cart(request):
             response.delete_cookie('product')
             return response
         else:
-            pk_deleted = request.POST.get('product_pk')
+            pk_deleted = request.POST.get('product_pk_deleted')
+            print(pk_deleted)
 
             if pk_deleted:
+                print(products_pk)
                 products_pk.remove(pk_deleted)
-                new_product = ' '.join(products_pk)
-
-                if new_product:
+                print(products_pk)
+                products_pk = ' '.join(products_pk)
+                print(products_pk)
+                if products_pk:
                     list_products = list()
-                    for product in new_product.split(" "):
-                        list_products.append(Product.objects.get(pk=product))
-                    response = render(request, 'cartapp/cart.html', {'products': list_products,'login':login})
-                    response.set_cookie('product', new_product)
+                    # for product in new_product.split(" "):
+                    #     list_products.append(Product.objects.filter(pk=product))
+                    list_products = Product.objects.select_related().filter(pk__in=products_pk.split(" ")).values()
+                    print(list_products)
+                    list_products = list(list_products)
+                    response = JsonResponse({'list_products': list_products})
+                    response.set_cookie('product', products_pk)
                     return response
                 else:
                     response = render(request, 'cartapp/cart.html', {'products': [],'empty':'true','login':login})

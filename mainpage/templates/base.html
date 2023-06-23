@@ -1,3 +1,4 @@
+{% load custom_tags %}
 {% load static  %}
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
     <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
+    <script defer>
         function toggleDropdown() {
         document.getElementById("myDropdown").classList.toggle("show");
         document.querySelectorAll(".bar").forEach(bar => bar.classList.toggle("change"));
@@ -80,7 +81,7 @@
                             <a class="btn btn-outline-secondary text-light" style="border: none;" href="../">About us</a>
                             <a class="btn btn-outline-secondary text-light" style="border: none;" href="../catalogue/">Catalog</a>
                             <a class="btn btn-outline-secondary text-light" style="border: none;" href="../feedback/">Feedback</a>
-                            <a class="btn btn-outline-secondary text-light" style="border: none;" href="../cart/">Cart</a>
+                            <a class="btn btn-outline-secondary text-light" style="border: none; display:flex; flex-direction: column; gap: 0; max-height: 48px;" href="../cart/"><p style="padding: 0; height: 20px;">Cart</p><p id="countProductInCart" style="position: sticky; padding: 0; width: 15px; height: 15px;">{% count_products_in_cart request %}</p></a>
                             {% if login == 'false' %}
                             <hr color="white" style="color: white;"> 
                             <a class="btn btn-outline-secondary text-light" style="border: none;" href="../registration/">Registration</a>

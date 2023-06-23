@@ -21,27 +21,30 @@ def show_catalog(request):
             response = render(request, "catalogapp/search.html", context={'search_req': search_req, 'list_searched': list_searched, 'login': login})
             return response
         else:
-            checkedbox = request.POST.getlist('check')
-            print(checkedbox, request.POST)
+            checkedbox = request.POST.getlist('check[]')
+            print(checkedbox)
             list_filter = []
             list_products = []  # Створення порожнього списку
-
+            for box in checkedbox:
+                print(box)
+                list_filter.append(Category.objects.get(pk=box))
+            print(list_filter)
             if len(checkedbox) < 1:
+                print(False)
                 context = {"list_products": None, 'additional_category': Category.objects.all(), 'login': login}
                 response = render(request, "catalogapp/catalog.html", context)
                 return response
             else:
-                for box in checkedbox:
-                    list_filter.append(Category.objects.get(pk=box))
-                # list_filter = Product.objects.filter(category__in=list_filter).values()
-                # print(list_filter)
-                # list_products = list(list_filter)
-                # return JsonResponse({'list_products': list_products})
-                list_filter = Product.objects.all().filter(category__in=list_filter)
+                print(True)
+                list_filter = Product.objects.filter(category__in=list_filter).values()
                 print(list_filter)
-                context = {"list_products": list_filter, 'additional_category': Category.objects.all(), 'login': login}
-                response = render(request, "catalogapp/catalog.html", context)
-                return response
+                list_products = list(list_filter)
+                return JsonResponse({'list_products': list_products})
+                # list_filter = Product.objects.all().filter(category__in=list_filter)
+                # print(list_filter)
+                # context = {"list_products": list_filter, 'additional_category': Category.objects.all(), 'login': login}
+                # response = render(request, "catalogapp/catalog.html", context)
+                # return response
 
 
     context = {"list_products": Product.objects.all(), 'additional_category': Category.objects.all(), 'login': login}
