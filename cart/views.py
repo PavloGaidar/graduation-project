@@ -67,9 +67,9 @@ def show_cart(request):
                 print(products_pk)
                 if products_pk:
                     list_products = list()
-                    # for product in new_product.split(" "):
-                    #     list_products.append(Product.objects.filter(pk=product))
-                    list_products = Product.objects.select_related().filter(pk__in=products_pk.split(" ")).values()
+                    # for product in products_pk.split(" "):
+                    #     list_products.update({"product" : Product.objects.filter(pk=product)})
+                    list_products = Product.objects.filter(pk__in=products_pk.split(" ")).values()
                     print(list_products)
                     list_products = list(list_products)
                     response = JsonResponse({'list_products': list_products})

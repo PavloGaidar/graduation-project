@@ -86,27 +86,46 @@ def show_product(request, product_pk):
                     response.set_cookie('product', product)
                     return response
             else:
-                name = request.POST.get('name-massages')
-                messages = request.POST.get('messages')
-                for number in '0123456789':
-                    if number in name:
-                        context['error_comment'] = 'Name cannot contain any number'
-                        response = render(request, 'catalogapp/product.html', context)
-                        print('work1')
-                        print(context)
-                        return response
+                # name = request.POST.get('name-massages')
+                # messages = request.POST.get('messages')
+                # for number in '0123456789':
+                #     if number in name:
+                #         context['error_comment'] = 'Name cannot contain any number'
+                #         response = render(request, 'catalogapp/product.html', context)
+                #         print('work1')
+                #         print(context)
+                #         return response
                     
-                for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz':
-                    if letter not in messages:
-                        context['error_comment'] = 'Message cannot contain only number'
-                        response = render(request, 'catalogapp/product.html', context)
-                        print('work2')
-                        return response 
+                # for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz':
+                #     if letter not in messages:
+                #         context['error_comment'] = 'Message cannot contain only number'
+                #         response = render(request, 'catalogapp/product.html', context)
+                #         print('work2')
+                #         return response 
                         
                 
 
-                Comment.objects.create(name=name, messages=messages , product=product)     
-                response = render(request, 'catalogapp/product.html', context)
-                return response
+                # Comment.objects.create(name=name, messages=messages , product=product)     
+                # response = render(request, 'catalogapp/product.html', context)
+                # return response
+                name = request.POST.get('name-massages')
+                messages = request.POST.get('messages')
+                context = {}
+
+                for number in '0123456789':
+                    if number in name:
+                        context['error_comment'] = 'Name cannot contain any number'
+                        return JsonResponse(context)
+
+                # for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz':
+                #     if letter not in messages:
+                #         context['error_comment'] = 'Message cannot contain only number'
+                #         return JsonResponse(context)
+
+                Comment.objects.create(name=name, messages=messages, product=product)
+                comments = Comment.objects.filter(product=product).values()
+                print(comments)
+                comments = list(comments)
+                return JsonResponse({'comments': comments})
 
     return response

@@ -73,6 +73,7 @@
               <form action="" method="post" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                 {% csrf_token %}
                 <input type="text" name="name-massages" onsubmit="return validateCommentForm()" id="name-input" required placeholder="Your name" style="text-align: center; margin-top: 10px;width: 260px;">
+                <input type="text" hidden name="productt" value="{{product.pk}}" class="productt">
                 <textarea name="messages" onsubmit="return validateCommentForm()" id="message-input" required placeholder="Your message" style="text-align: center; margin-top: 10px;resize: none;width: 260px;height: 60px;color: grey;"></textarea>
                 <p class="error text-danger" id="error-message-comment"><strong>{{ error_comment }}</strong></p>
                 <button class="button-add-coment" id="create-comment-btn">Create</button>
@@ -109,42 +110,96 @@
   </div>
 </div>
   <script>
-$(document).ready(function() {
-  $('#load-comments-btn').click(function(event) {
-    event.preventDefault();
+    $(document).ready(function () {
+      $('#load-comments-btn').click(function (event) {
+        event.preventDefault();
 
-    let name = $('#text-input').val();
-    let productId = $('#product_pk').val();
+        let name = $('#text-input').val();
+        let productId = $('#product_pk').val();
 
-    $.ajax({
-      type: 'POST',
-      url: '/product/' + $('#product_pk').val(),
-      data: {
-        'name': name,
-        'product_pk': productId,
-        'csrfmiddlewaretoken': '{{ csrf_token }}'
-      },
-      success: function(response) {
-        document.querySelector('.bg-succes').hidden = false
-      },
+        $.ajax({
+          type: 'POST',
+          url: '/product/' + $('#product_pk').val(),
+          data: {
+            'name': name,
+            'product_pk': productId,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+          },
+          success: function (response) {
+            document.querySelector('.bg-succes').hidden = false
+            let count = document.querySelector('#countProductInCart');
+            if (count.textContent == 'None') {
+              count.textContent = '1';
+              count.style.display = 'flex';
+            } else {
+              count.textContent = Number(count.textContent) + 1;
+            }
+          },
+        });
+      });
     });
+    // Event handler for button click or filter selection
+    $('.button-add-coment').click(function(event) {
+  event.preventDefault(); // Prevent default form behavior
+
+  // Get input values
+  let name = $('#name-input').val();
+  let message = $('#message-input').val();
+  let productt = $('.productt').val()
+
+  // AJAX request to the server
+  $.ajax({
+    url: '', // Specify the URL for processing the comment
+    type: 'POST',
+    data: {
+      'csrfmiddlewaretoken': '{{ csrf_token }}',
+      'name-massages': name,
+      'messages': message,
+      'product' : productt,
+      'name' : 'comment'
+    },
+    success: function(response) {
+      if (response.error_comment) {
+        
+        // Display error message below the comment form
+        $('#error-message-comment').html('<strong>' + response.error_comment + '</strong>');
+      } else {
+        $('#name-input').val('');
+        $('#message-input').val('');
+        // Clear the error message
+        $('#error-message-comment').empty();
+        $('.product-3').empty();
+        console.log(true)
+        console.log(response)
+        for (let i = 0; i < response.comments.length; i++) {
+          let comment = response.comments[i];
+          console.log(true)
+          console.log(comment)
+          let newcom = `
+          <div class="product-4">
+                
+                <h2><strong>${comment.name}</strong></h2>
+                <p style="font-size: 14px;">Created at: ${comment.created_at}</p>
+                <p>${comment.messages}</p>
+                
+              </div>
+              <hr>
+            `;
+            $('.product-3').append(newcom);
+        }
+        // let commentsTab = $('#contact-tab-pane-1');
+        // commentsTab.html(response.comments);
+      }
+    },
+    error: function(xhr, status, error) {
+      // Handle error
+      console.error(error);
+    }
   });
 });
-//   </script>
-<script defer>
-  document.querySelector('.bg-succes').addEventListener('click',(event) =>{
-    document.querySelector('.bg-succes').hidden = true;
-  })
-</script>
-<script defer>
-  document.querySelector('.button-add-to-cart').addEventListener('click', (event) => {
-    let count = document.querySelector('#countProductInCart');
-    if (count.textContent == 'None') {
-        count.textContent = '1';
-        count.style.display = 'flex';
-    } else {
-        count.textContent = Number(count.textContent) + 1;
-    }
-});
+    document.querySelector('.bg-succes').addEventListener('click', (event) => {
+      document.querySelector('.bg-succes').hidden = true;
+    })
+
 </script>
 {% endblock %}

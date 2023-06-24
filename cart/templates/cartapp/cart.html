@@ -111,8 +111,6 @@
     {% endif %}
   </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
  $(document).ready(function() {
   $(".button-delete-from-cart").click(function(event) {
@@ -132,6 +130,7 @@
         'product_pk_deleted': productId,
       },
       success: function(response) {
+        
         console.log(response.list_products)
         $(".products-idi-b-bulkydgfuiuicbbhgyzgufgbhhjyuvxtvdfVJHNGgyuFgnmbhgzyyfyugHJchhcFYctuyGH").empty();
         for (let i = 0; i < response.list_products.length; i++) {
@@ -181,6 +180,7 @@
         $('.need-to-hide').remove();
         $('.show').remove();
         $('.button-modal').remove();
+        $('#countProductInCart').remove();
         $(".products-idi-b-bulkydgfuiuicbbhgyzgufgbhhjyuvxtvdfVJHNGgyuFgnmbhgzyyfyugHJchhcFYctuyGH").empty();
           let deleted = `
           <h3 style="color: black">Your cart is empty</h3>
@@ -191,7 +191,16 @@
           >
           `;
           $(".products-idi-b-bulkydgfuiuicbbhgyzgufgbhhjyuvxtvdfVJHNGgyuFgnmbhgzyyfyugHJchhcFYctuyGH").append(deleted);
-          
+          let count = document.querySelector('#countProductInCart');
+          if (count.textContent == '1') {
+              count.textContent = 'None';
+              count.style.display = 'none';
+              main.style.justifyContent = "center";
+              location.reload()
+          } else {
+              count.textContent = Number(count.textContent) - 1;
+              main.style.justifyContent = "center";
+          }
       },
       error: function(xhr, errmsg, err) {
         // Обработка ошибок при выполнении запроса (если необходимо)
@@ -200,6 +209,5 @@
     });
   });
 });
-
 </script>
 {% endblock %}
