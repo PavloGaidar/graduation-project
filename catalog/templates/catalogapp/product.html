@@ -131,9 +131,20 @@ $(document).ready(function() {
   });
 });
 //   </script>
-<script>
+<script defer>
   document.querySelector('.bg-succes').addEventListener('click',(event) =>{
     document.querySelector('.bg-succes').hidden = true;
   })
+</script>
+<script defer>
+  document.querySelector('.button-add-to-cart').addEventListener('click', (event) => {
+    let count = document.querySelector('#countProductInCart');
+    if (count.textContent == 'None') {
+        count.textContent = '1';
+        count.style.display = 'flex';
+    } else {
+        count.textContent = Number(count.textContent) + 1;
+    }
+});
 </script>
 {% endblock %}

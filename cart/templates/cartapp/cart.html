@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% block content %}
 <div class="product-block233">
   {% if empty != 'true' %}
+  <div class="need-to-hide">
   <div
-    class="modal fade"
+    class="modal fade "
     id="staticBackdrop"
     data-bs-backdrop="static"
     data-bs-keyboard="false"
@@ -10,7 +11,7 @@
     aria-labelledby="staticBackdropLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-dialog-centered h-25">
+    <div class="modal-dialog modal-dialog-centered h-25 ">
       <div class="modal-content .modal-sm h-25" style="display: flex">
         <div
           class="modal-body .modal-sm h-25"
@@ -37,12 +38,16 @@
             <input
               type="text"
               name="UserName"
+              class="UserName"
+              id="UserName"
               placeholder="Input your name"
               required
             />
             <input
               type="email"
               name="email"
+              class="email"
+              id="email"
               placeholder="Input your email"
               required
             />
@@ -54,12 +59,13 @@
             >
               Close
             </button>
-            <button type="submit" class="order_products">Buy</button>
+            <button type="submit" class="order_products button-buy">Buy</button>
           </form>
         </div>
       </div>
     </div>
   </div>
+</div>
 
   <button
     type="button"
@@ -84,6 +90,7 @@
       <form method="POST" class="delet_from_cart">
         {% csrf_token %}
         <input
+          class="product_pk"
           type="hidden"
           name="product_pk"
           id="product_pk"
@@ -110,8 +117,9 @@
  $(document).ready(function() {
   $(".button-delete-from-cart").click(function(event) {
     event.preventDefault();
-
-    let productId = $("#product_pk").val();
+    const form = event.target.closest('form');
+    console.log(form)
+    let productId = form.getElementsByClassName('product_pk')['product_pk'].value;
     console.log(productId)
 
     let url = "/cart/";
@@ -143,6 +151,47 @@
           `;
           $(".products-idi-b-bulkydgfuiuicbbhgyzgufgbhhjyuvxtvdfVJHNGgyuFgnmbhgzyyfyugHJchhcFYctuyGH").append(deleted);
         }
+      },
+      error: function(xhr, errmsg, err) {
+        // Обработка ошибок при выполнении запроса (если необходимо)
+        console.log(xhr.status + ": " + xhr.responseText);
+      },
+    });
+  });
+  $(".button-buy").click(function(event) {
+    event.preventDefault();
+    const form = event.target.closest('form');
+    console.log(form)
+    let UserName = form.getElementsByClassName('UserName')['UserName'].value;
+    let email = form.getElementsByClassName('email')['email'].value;
+
+    let url = "/cart/";
+
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: {
+        csrfmiddlewaretoken: "{{ csrf_token }}",
+        'UserName' : UserName,
+        'email' : email,
+        'name' : 'buy'
+      },
+      success: function(response) {
+        console.log(response.list_products)
+        $('.need-to-hide').remove();
+        $('.show').remove();
+        $('.button-modal').remove();
+        $(".products-idi-b-bulkydgfuiuicbbhgyzgufgbhhjyuvxtvdfVJHNGgyuFgnmbhgzyyfyugHJchhcFYctuyGH").empty();
+          let deleted = `
+          <h3 style="color: black">Your cart is empty</h3>
+          <a
+            style="color: rgb(30, 81, 146); text-decoration: none"
+            href="../catalogue"
+            >You can click here to redirect to the cart</a
+          >
+          `;
+          $(".products-idi-b-bulkydgfuiuicbbhgyzgufgbhhjyuvxtvdfVJHNGgyuFgnmbhgzyyfyugHJchhcFYctuyGH").append(deleted);
+          
       },
       error: function(xhr, errmsg, err) {
         // Обработка ошибок при выполнении запроса (если необходимо)

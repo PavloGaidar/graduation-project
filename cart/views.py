@@ -37,6 +37,7 @@ def show_cart(request):
             product_readed = []
             name = request.POST.get('UserName')
             email = request.POST.get('email')
+            print(name,email)
             price = 0
             message = f'Order \nName: {name} \nEmail: {email}\nProduct:'
             for product in list_products:
@@ -47,7 +48,7 @@ def show_cart(request):
 
                     count = list_products.count(product)
                     price += product.price * count
-                    message += f'\n{product.name},Items:{count}, Price:{int(product.price)*count}$'
+                    message += f'\n{product.name},Items: {count}, Price:{int(product.price)*count}$'
                     product_readed.append(product)
             message += f'\nFinal price - {price}$'
             tele.bot_send(TELEGRAM_BOT_TOKEN,TELEGRAM_BOT_CHAT_ID,message)
