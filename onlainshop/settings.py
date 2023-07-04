@@ -34,7 +34,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 
 EMAIL_PORT = 587
 
-EMAIL_HOST_USER = 'bytebliss7@gmail.com Your email'
+EMAIL_HOST_USER = 'Your email'
 
 EMAIL_HOST_PASSWORD = 'Your email password'
 
